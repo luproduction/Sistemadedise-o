@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión — Equipo Diseño · Dropi Brand Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="profile-screen">
+
+  <div class="login-mark">D</div>
+
+  <div class="login-card" id="loginCard">
+    <h1 class="login-title">Iniciar sesión</h1>
+    <p class="login-subtitle">Accede al repositorio interno del equipo de diseño.</p>
+
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="login-field">
+        <label for="loginUser">Usuario</label>
+        <input type="text" id="loginUser" name="loginUser" placeholder="Tu usuario" autocomplete="username" required>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">Contraseña</label>
+        <input type="password" id="loginPass" name="loginPass" placeholder="Tu contraseña" autocomplete="current-password" required>
+      </div>
+
+      <div class="login-error" id="loginError">Usuario o contraseña incorrectos.</div>
+
+      <button type="submit" class="login-btn">Iniciar sesión</button>
+    </form>
+
+    <a class="login-back" href="dashboard-creativo.html">← Volver al Dashboard Creativo</a>
+  </div>
+
+</section>
+
+<script>
+  /* =========================================================================
+     ACCESO — Equipo Diseño
+     -------------------------------------------------------------------------
+     Este proyecto es un sitio estático (HTML/CSS/JS sin backend), por lo que
+     esta validación ocurre del lado del cliente. Es útil como control de
+     acceso básico para un repositorio interno, pero NO sustituye una
+     autenticación real: cualquier persona con acceso al código fuente puede
+     ver las credenciales configuradas aquí.
+
+     Para producción se recomienda conectar este formulario a un servicio de
+     autenticación real (por ejemplo, un backend propio, Auth0, Firebase Auth,
+     o el proveedor SSO interno de Dropi).
+
+     Configura aquí las credenciales exclusivas del equipo de diseño:
+  ========================================================================= */
+  const DESIGN_TEAM_CREDENTIALS = {
+    usuario:    'Creativosdropi_Cracks',
+    contrasena: 'produccioncreativa_202607'
+  };
+
+  const SESSION_KEY = 'dropi_design_team_auth';
+
+  const form      = document.getElementById('loginForm');
+  const errorBox  = document.getElementById('loginError');
+  const userInput = document.getElementById('loginUser');
+  const passInput = document.getElementById('loginPass');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const usuario    = userInput.value.trim();
+    const contrasena = passInput.value;
+
+    const esValido = usuario === DESIGN_TEAM_CREDENTIALS.usuario &&
+                      contrasena === DESIGN_TEAM_CREDENTIALS.contrasena;
+
+    if (esValido) {
+      sessionStorage.setItem(SESSION_KEY, 'true');
+      window.location.href = 'repositorio-diseno.html';
+    } else {
+      errorBox.classList.remove('show');
+      // fuerza reinicio de la animación de entrada del mensaje de error
+      void errorBox.offsetWidth;
+      errorBox.classList.add('show');
+      passInput.value = '';
+      passInput.focus();
+    }
+  });
+</script>
+
+</body>
+</html>

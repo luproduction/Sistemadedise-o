@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropi Brand Hub — Creativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="avatar-mini" style="background:linear-gradient(135deg,#FF8A3D,#FF5A1F);">C</div>
+      <div class="who">
+        <small>Perfil activo</small>
+        <strong>Creativo</strong>
+      </div>
+      <a class="switch-profile" href="index.html">Cambiar</a>
+    </div>
+    <div>
+      <div class="nav-label">Categorías de marca</div>
+      <ul class="nav-list" id="navList">
+        <li class="nav-item active" data-cat="colores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20c1.5 0 2-1 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .8-1.5 1.8-1.5H17a3 3 0 0 0 3-3c0-5-3.5-11-8-11z"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="7" r="1"/><circle cx="15" cy="9" r="1"/></svg>Colorimetría</li>
+        <li class="nav-item" data-cat="tipografia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Tipografía</li>
+        <li class="nav-item" data-cat="logos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Logos</li>
+        <li class="nav-item" data-cat="audiovisual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Recursos audiovisuales</li>
+        <li class="nav-item" data-cat="plantillas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Plantillas</li>
+        <li class="nav-item" data-cat="imagenes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Banco de imágenes</li>
+        <li class="nav-item" data-cat="landing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Landing</li>
+        <li class="nav-item" data-cat="manuales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>Manuales de Área</li>
+        <li class="nav-item nav-item--restricted" data-cat="diseno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Recursos Equipo de Diseño</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h1 id="mainTitle">Colores de marca</h1>
+        <p id="mainSubtitle">Todo lo que necesitas para mantener la identidad visual de Dropi consistente.</p>
+      </div>
+    </div>
+
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-text">
+        <div class="eyebrow">Recién actualizado</div>
+        <h2>Nuevo kit de marca Dropi 2026</h2>
+      </div>
+      <button class="hero-cta">Descargar kit completo</button>
+    </div>
+
+    <div class="section-title" id="sectionTitleWrap">
+      <h3 id="sectionTitle">Colores de marca</h3>
+    </div>
+
+    <!-- contenedor exclusivo para el showcase de tipografía -->
+    <div id="fontShowcase" style="display:none; margin-bottom:0;"></div>
+
+    <div class="card-grid" id="cardGrid"></div>
+  </main>
+</section>
+
+<script>
+  const DL_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+  const VLC_EXPAND_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>`;
+
+  const content = {
+    colores: {
+      title: 'Colores de marca',
+      type: 'colors',
+      palettes: [
+        {
+          label: 'Paleta principal',
+          desc: 'Los colores primarios de Dropi. El naranja es el corazón de la marca: energético, cercano y directo. Los negros garantizan profundidad y contraste en interfaces digitales.',
+          capsules: [
+            {hex:'#EC6F2D', name:'Naranja Dropi',  light:false},
+            {hex:'#F49A3D', name:'Naranja calido',   light:false},
+            {hex:'#FBC15E', name:'naranja light',     light:false},
+            {hex:'#FFFFFF', name:'Blanco base',  light:true},
+            {hex:'#878791', name:'Gris suave',  light:false},
+            {hex:'#353535', name:'Gris oscuro',  light:false}
+          ]
+        },
+        {
+          label: 'Degradados',
+          desc: 'Los degradados complementan la identidad visual de Dropi aportando dinamismo y profundidad sin perder la claridad de la marca.',
+          capsules: [
+            {gradient: 'linear-gradient(0deg, #EA5E37 0%, #F4983C 100%)', name:'Gradiente 1',  light:false},
+            {gradient: 'linear-gradient(0deg, #F18B42 0%, #FAB84C 100%)', name:'Gradiente 2',   light:false},
+            {gradient: 'linear-gradient(0deg, #EC643B 0%, #F6A225 100%)', name:'Gradiente 3',     light:false}
+          ]
+        }
+      ]
+    },
+
+    tipografia: {
+      title: 'Tipografía',
+      type: 'fonts',
+      items: [
+        {
+          title: 'Tusker Grotesk',
+          role: 'Títulos y display',
+          desc: 'Uso en encabezados, hero y elementos de alto impacto visual.',
+          sample: 'Tusker Grotesk',
+          phrase: 'Dropi conecta el mundo',
+          weights: ['Medium 1500','SemiBold 2500','Bold 4700','Super 9800'],
+          downloadUrl: 'https://fonts.google.com/specimen/Sora',
+          fontFamily: 'Tusker',
+        },
+        {
+          title: 'Montserrat',
+          role: 'Cuerpo de texto e interfaz',
+          desc: 'Uso en párrafos, formularios, etiquetas y navegación.',
+          sample: 'Montserrat',
+          phrase: 'Recursos de marca Dropi',
+          weights: ['Thin','ExtraLight','Light','Regular','Bold','Black'],
+          downloadUrl: 'https://fonts.google.com/specimen/Inter',
+          fontFamily: 'Inter',
+        },
+        {
+          title: 'Guía de jerarquías',
+          role: 'Documento de referencia',
+          desc: 'Tamaños, pesos y espaciados recomendados para cada contexto.',
+          icon: 'layout',
+          downloadUrl: '#',
+        },
+      ]
+    },
+
+    logos: {
+      title: 'Logos',
+      type: 'logo-panels',
+      variations: [
+        { id:1,  label:'Logo principal a color' },
+        { id:2,  label:'Isotipo' },
+        { id:3,  label:'Wordmark' },
+        { id:4,  label:'Horizontal' },
+        { id:5,  label:'Vertical' },
+        { id:6,  label:'Monocromático negro' },
+        { id:7,  label:'Monocromático blanco' },
+        { id:8,  label:'Escala de grises' },
+        { id:9,  label:'Sobre fondo claro' },
+        { id:10, label:'Sobre fondo oscuro' },
+        { id:11, label:'Fondo transparente' },
+        { id:12, label:'Con tagline' },
+        { id:13, label:'Compacto / favicon' },
+        { id:14, label:'Para redes sociales' },
+        { id:15, label:'Para papelería' },
+        { id:16, label:'Para merchandising' },
+        { id:17, label:'Marca de agua' },
+        { id:18, label:'Variación negativa' },
+        { id:19, label:'Uso en video / intro' },
+        { id:20, label:'Variación institucional' },
+      ]
+    },
+
+    audiovisual: {
+      title: 'Recursos audiovisuales',
+      type: 'download-cards',
+      items: [
+        {
+          title: 'Intro de marca',
+          desc: 'Clip animado de 3 segundos para abrir presentaciones, videos y reels de redes sociales.',
+          icon: 'video',
+          tag: 'MP4 · MOV',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar video',
+        },
+        {
+          title: 'Plantillas de motion',
+          desc: 'Proyectos base para After Effects con los colores, tipografías y elementos gráficos de marca.',
+          icon: 'video',
+          tag: 'AEP · MOGRT',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar plantilla',
+        },
+        {
+          title: 'Banco de sonido',
+          desc: 'Jingles cortos y efectos de sonido oficiales de marca para videos y notificaciones.',
+          icon: 'video',
+          tag: 'MP3 · WAV',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar audio',
+        },
+        {
+          title: 'GIFs animados',
+          desc: 'Stickers y GIFs de marca listos para usar en mensajería, campañas y redes sociales.',
+          icon: 'image',
+          tag: 'GIF · APNG',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar GIFs',
+        },
+      ]
+    },
+
+    plantillas: {
+      title: 'Plantillas',
+      type: 'download-cards',
+      items: [
+        {
+          title: 'Presentación corporativa',
+          desc: 'Formato oficial para pitch decks, reportes trimestrales y presentaciones a clientes.',
+          icon: 'layout',
+          tag: 'PPTX · Figma',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar plantilla',
+        },
+        {
+          title: 'Plantillas de redes sociales',
+          desc: 'Stories, posts cuadrados y carruseles listos para editar en Figma o Canva.',
+          icon: 'layout',
+          tag: 'Figma · Canva',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar plantilla',
+        },
+        {
+          title: 'Plantilla de documentos',
+          desc: 'Encabezados, pie de página y estilos de marca para documentos de Word o Google Docs.',
+          icon: 'layout',
+          tag: 'DOCX · Google Docs',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar plantilla',
+        },
+        {
+          title: 'Email marketing',
+          desc: 'Plantilla HTML para newsletters y correos transaccionales con identidad Dropi.',
+          icon: 'type',
+          tag: 'HTML · Figma',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar plantilla',
+        },
+      ]
+    },
+
+    imagenes: {
+      title: 'Banco de imágenes',
+      type: 'download-cards',
+      items: [
+        {
+          title: 'Fotografía de producto',
+          desc: 'Sets fotográficos oficiales de producto en alta resolución, fondo blanco y en contexto.',
+          icon: 'image',
+          tag: 'JPG · PNG · TIFF',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar fotos',
+        },
+        {
+          title: 'Iconografía de marca',
+          desc: 'Set completo de íconos en trazo consistente con el estilo visual de Dropi.',
+          icon: 'image',
+          tag: 'SVG · PNG',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar íconos',
+        },
+        {
+          title: 'Ilustraciones',
+          desc: 'Recursos gráficos y piezas ilustradas para campañas, blog y materiales de comunicación.',
+          icon: 'image',
+          tag: 'SVG · PNG',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar ilustraciones',
+        },
+        {
+          title: 'Fondos y texturas',
+          desc: 'Patrones, gradientes y texturas de marca para fondos en piezas digitales e impresas.',
+          icon: 'image',
+          tag: 'JPG · PNG',
+          downloadUrl: '#',
+          downloadLabel: 'Descargar fondos',
+        },
+      ]
+    },
+
+    landing: {
+      title: 'Landing',
+      type: 'landing-hub',
+      palettes: {
+        calida: {
+          name: 'Paleta Cálida',
+          desc: 'Paleta cálida usada en el hero y secciones destacadas del landing page. Transmite energía, calidez y cercanía con la marca.',
+          capsules: [
+            { hex: 'EA6113' },
+            { hex: 'F88F22' },
+            { hex: 'FBB931' },
+            { hex: 'FFE3B3' }
+          ]
+        },
+        neutra: {
+          name: 'Paleta Neutra',
+          desc: 'Colores neutros de apoyo, reutilizados del sistema de color de marca. Aportan contraste y equilibrio junto a la paleta cálida.',
+          capsules: [
+            { hex: 'FFFFFF' },
+            { hex: '878791' },
+            { hex: '353535' }
+          ]
+        }
+      },
+      typography: {
+        principal: {
+          fontFamily: 'Inter',
+          label: 'Tipografía Principal · Inter',
+          sample: 'Inter',
+          phrase: 'Launch faster. Convert better.',
+          desc: '<strong>Inter</strong> es la tipografía principal del landing page, pensada para textos de cuerpo, formularios y elementos de interfaz. Destaca por su alta legibilidad en pantalla, su versatilidad entre pesos y tamaños, y su óptimo desempeño en productos digitales.',
+          weights: ['Regular', 'Medium', 'SemiBold', 'Bold', 'ExtraBold'],
+          downloadUrl: 'https://fonts.google.com/specimen/Inter'
+        },
+        complementaria: {
+          fontFamily: 'Sora',
+          label: 'Tipografía Complementaria · Sora',
+          sample: 'Sora',
+          phrase: 'Diseño con carácter.',
+          desc: '<strong>Sora</strong> es la tipografía complementaria del landing, utilizada en títulos, encabezados y elementos destacados. Aporta jerarquía visual y personalidad, con un carácter geométrico que equilibra la calidez de la marca.',
+          weights: ['Regular', 'Medium', 'SemiBold', 'Bold', 'ExtraBold'],
+          downloadUrl: 'https://fonts.google.com/specimen/Sora'
+        }
+      },
+      designSystem: {
+        logos: [
+          { title: 'Logo principal', tag: 'SVG · PNG', downloadUrl: '#', downloadLabel: 'Descargar logo' },
+          { title: 'Isotipo', tag: 'SVG · PNG', downloadUrl: '#', downloadLabel: 'Descargar isotipo' },
+          { title: 'Variación monocromática', tag: 'SVG · PNG', downloadUrl: '#', downloadLabel: 'Descargar variación' },
+        ],
+        paginas: [
+          { title: 'Home', variant: 'home' },
+          { title: 'Checkout', variant: 'checkout' },
+          { title: 'Dashboard', variant: 'dashboard' },
+        ],
+        botones: [
+          { label: 'Primario', cls: 'ds-btn--primario' },
+          { label: 'Neutral', cls: 'ds-btn--neutral' },
+          { label: 'Informativo', cls: 'ds-btn--info' },
+          { label: 'Success', cls: 'ds-btn--success' },
+          { label: 'Danger', cls: 'ds-btn--danger' },
+        ],
+        botonesDocs: [
+          {
+            label: 'Primario', cls: 'ds-btn--primario',
+            titulo: 'Botones Primarios',
+            proposito: 'Comunican la acción principal de una pantalla o flujo. Guían la atención del usuario hacia la tarea más importante del contexto.',
+            usos: 'Enviar formularios, confirmar compras, iniciar procesos clave como registro, checkout o guardado de cambios.',
+            tallas: [{cls:'ds-btn--sm', label:'Small'}, {cls:'', label:'Medium'}, {cls:'ds-btn--lg', label:'Large'}],
+            buenasPracticas: 'Usar un único botón primario por vista para no competir por la atención del usuario; evitar combinarlo con otro primario en el mismo bloque visual.'
+          },
+          {
+            label: 'Neutral', cls: 'ds-btn--neutral',
+            titulo: 'Botones Neutrales',
+            proposito: 'Representan acciones secundarias o complementarias que no requieren el mismo énfasis visual que la acción principal.',
+            usos: 'Cancelar, volver, "ver más", acciones alternativas dentro de un mismo formulario o tarjeta.',
+            tallas: [{cls:'ds-btn--sm', label:'Small'}, {cls:'', label:'Medium'}, {cls:'ds-btn--lg', label:'Large'}],
+            buenasPracticas: 'Ubicar junto al botón primario para ofrecer una salida o alternativa clara, sin restarle protagonismo a la acción principal.'
+          },
+          {
+            label: 'Informativo', cls: 'ds-btn--info',
+            titulo: 'Botones Informativos',
+            proposito: 'Dirigen al usuario hacia contenido adicional o de referencia: ayuda, documentación o detalles ampliados.',
+            usos: 'Ver más información, abrir tooltips extendidos, enlazar a guías o políticas dentro de la interfaz.',
+            tallas: [{cls:'ds-btn--sm', label:'Small'}, {cls:'', label:'Medium'}, {cls:'ds-btn--lg', label:'Large'}],
+            buenasPracticas: 'Reservar para acciones de bajo riesgo y consulta; no utilizar para confirmar o eliminar información.'
+          },
+          {
+            label: 'Success', cls: 'ds-btn--success',
+            titulo: 'Botones Success',
+            proposito: 'Confirman que una acción se completó correctamente o refuerzan un resultado positivo dentro del flujo.',
+            usos: 'Confirmaciones finales, mensajes de éxito, aprobación de procesos como pagos o publicaciones.',
+            tallas: [{cls:'ds-btn--sm', label:'Small'}, {cls:'', label:'Medium'}, {cls:'ds-btn--lg', label:'Large'}],
+            buenasPracticas: 'Usar solo tras una validación exitosa; evitar como botón de acción principal genérica.'
+          },
+        ],
+        iconos: [
+          { key: 'colorimetria', label: 'Colorimetría' },
+          { key: 'tipografia',   label: 'Tipografía' },
+          { key: 'logos',        label: 'Logos' },
+          { key: 'audiovisual',  label: 'Audiovisual' },
+          { key: 'plantillas',   label: 'Plantillas' },
+          { key: 'imagenes',     label: 'Imágenes' },
+          { key: 'check',        label: 'Success' },
+          { key: 'download',     label: 'Descarga' },
+        ],
+        sombras: [
+          { label: 'sm',   cls: 'shadow-sm' },
+          { label: 'md',   cls: 'shadow-md' },
+          { label: 'lg',   cls: 'shadow-lg' },
+          { label: 'xl',   cls: 'shadow-xl' },
+          { label: 'glow', cls: 'shadow-glow' },
+        ]
+      }
+    },
+
+    manuales: {
+      title: 'Manuales de Área',
+      type: 'download-cards',
+      items: [
+        {
+          title: 'Manual de Diseño',
+          desc: 'Lineamientos de marca, componentes y flujo de trabajo del equipo creativo de Dropi.',
+          icon: 'image',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-diseno.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual de Producto',
+          desc: 'Procesos, roadmap y buenas prácticas para el equipo de producto y desarrollo.',
+          icon: 'layout',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-producto.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual de T.I.',
+          desc: 'Estándares técnicos, seguridad de la información y accesos internos de sistemas.',
+          icon: 'type',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-ti.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual Comercial y Marketing',
+          desc: 'Tono de comunicación, campañas y lineamientos comerciales para todas las submarcas.',
+          icon: 'video',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-comercial.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual de Operaciones y Logística',
+          desc: 'Procesos de última milla, cobertura y estándares de entrega para el equipo operativo.',
+          icon: 'layout',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-operaciones.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual de Servicio al Cliente',
+          desc: 'Protocolos de atención, tono de voz y resolución de casos para soporte y CX.',
+          icon: 'video',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-servicio.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+        {
+          title: 'Manual de Talento Humano',
+          desc: 'Cultura organizacional, onboarding y procesos internos para colaboradores de Dropi.',
+          icon: 'type',
+          tag: 'PDF',
+          downloadUrl: 'recursos/manuales/manual-talento.pdf',
+          downloadLabel: 'Descargar manual',
+        },
+      ]
+    },
+
+    diseno: {
+      title: 'Recursos Equipo de Diseño',
+      type: 'design-repo',
+      brands: [
+        { key: 'dropi',            label: 'Dropi',             initial: 'D',  status: 'ready', color: 'dropi'            },
+        { key: 'veloces',          label: 'Dropi Veloces',     initial: 'V',  status: 'ready', color: 'veloces'          },
+        { key: 'leyendas',         label: 'Leyendas',          initial: 'LY', status: 'ready', color: 'leyendas'         },
+        { key: 'ecomday',          label: 'EcomDay',           initial: 'E',  status: 'ready', color: 'ecomday'          },
+        { key: 'dropiapp',         label: 'Dropi App',         initial: 'AP', status: 'ready', color: 'dropiapp'         },
+        { key: 'ecommerceleague',  label: 'Ecommerce League',  initial: 'EL', status: 'ready', color: 'ecommerceleague'  },
+        { key: 'academy',          label: 'Dropi Academy',     initial: 'AC', status: 'ready', color: 'academy'          },
+        { key: 'dropiturbo',       label: 'Dropi Turbo',       initial: 'T',  status: 'ready', color: 'turbo'            },
+        { key: 'confio',           label: 'Confío',            initial: 'CF', status: 'ready', color: 'confio'           },
+        { key: 'chateapro',        label: 'Chatea Pro',        initial: 'CP', status: 'ready', color: 'chateapro'        },
+        { key: 'n8n',              label: 'n8n',               initial: 'N8', status: 'ready', color: 'n8n'              },
+        { key: 'playbooks',        label: 'Playbooks',         initial: 'PB', status: 'ready', color: 'playbook'         },
+      ]
+    }
+  };
+
+  const icons = {
+    type:   '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
+    logo:   '<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>',
+    video:  '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>',
+    layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>',
+    image:  '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'
+  };
+
+  /* íconos usados en la vitrina de Sistema de Diseño (reutilizan los trazos del sidebar) */
+  const dsIcons = {
+    colorimetria: '<path d="M12 2a10 10 0 1 0 0 20c1.5 0 2-1 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .8-1.5 1.8-1.5H17a3 3 0 0 0 3-3c0-5-3.5-11-8-11z"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="7" r="1"/><circle cx="15" cy="9" r="1"/>',
+    tipografia:   '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
+    logos:        '<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>',
+    audiovisual:  '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>',
+    plantillas:   '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>',
+    imagenes:     '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+    check:        '<polyline points="20 6 9 17 4 12"/>',
+    download:     '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
+  };
+
+  /* estado de la pestaña activa dentro de Landing */
+  let landingTab = 'landing';
+
+  /* ---- COLORES ---- */
+  function renderCapsules(palettes, container){
+    container.innerHTML = '';
+    palettes.forEach(palette => {
+      const header = document.createElement('div');
+      header.className = 'palette-header';
+      header.innerHTML = `
+        <div class="colors-section-label">${palette.label}</div>
+        <p class="palette-desc">${palette.desc}</p>`;
+      container.appendChild(header);
+
+      const row = document.createElement('div');
+      row.className = 'color-capsule-grid';
+      palette.capsules.forEach((cap, i) => {
+        const el = document.createElement('div');
+        el.className = 'color-capsule' + (cap.light ? ' light-cap' : '');
+        
+        // Magia aquí: Usa gradient si existe, de lo contrario usa hex
+        el.style.background = cap.gradient ? cap.gradient : cap.hex;
+        
+        el.title = cap.name;
+        
+        // Define qué texto mostrar en la parte inferior de la cápsula
+        const labelInferior = cap.hex ? cap.hex : 'DEGRADADO';
+
+        el.innerHTML = `<div class="cap-number">${i+1}</div><div class="cap-name">${cap.name}</div><div class="cap-hex">${labelInferior}</div>`;
+        row.appendChild(el);
+      });
+      container.appendChild(row);
+      container.insertAdjacentHTML('beforeend','<div style="height:36px"></div>');
+    });
+  }
+
+  /* ---- LANDING: paleta + tipografía + sistema de diseño ---- */
+  function buildPaletteCard(p) {
+    const hexList = p.capsules.map(c => c.hex);
+    return `
+      <div class="landing-palette-card">
+        <h3 class="lpc-title">${p.name}</h3>
+        <div class="lpc-capsule-row">
+          ${p.capsules.map(c => `<div class="lpc-capsule" style="background:#${c.hex}" title="${c.hex}"></div>`).join('')}
+        </div>
+        <div class="lpc-hex-row">
+          ${hexList.map(h => `<span>${h}</span>`).join('')}
+        </div>
+        <div class="lpc-gradient-bar" style="background:linear-gradient(90deg, ${hexList.map(h => '#' + h).join(', ')})"></div>
+        <p class="lpc-desc">${p.desc}</p>
+      </div>`;
+  }
+
+  function buildTypographyCard(t) {
+    return `
+      <div class="landing-type-capsule">
+        <div class="ltc-inner">
+          <div class="ltc-left">
+            <div class="ltc-label">${t.label}</div>
+            <div class="ltc-sample" style="font-family:'${t.fontFamily}',sans-serif">${t.sample}</div>
+            <div class="ltc-phrase" style="font-family:'${t.fontFamily}',sans-serif">${t.phrase}</div>
+            <p class="ltc-desc">${t.desc}</p>
+            <a class="download-btn download-btn--warm ltc-download" href="${t.downloadUrl}" target="_blank">${DL_ICON}Descargar tipografía</a>
+          </div>
+          <div class="ltc-right">
+            ${t.weights.map(w => `<span class="weight-pill">${w}</span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function buildLandingTabContent(data) {
+    return `
+      <div class="landing-palette-row">
+        ${buildPaletteCard(data.palettes.calida)}
+        ${buildPaletteCard(data.palettes.neutra)}
+      </div>
+
+      ${buildTypographyCard(data.typography.principal)}
+      ${buildTypographyCard(data.typography.complementaria)}`;
+  }
+
+  function buildSistemaTabContent(ds) {
+    const logoCards = ds.logos.map(d => `
+      <div class="logo-dl-card">
+        <div class="logo-dl-card__title">${d.title}</div>
+        <span class="dl-tag">${d.tag}</span>
+        <div class="logo-dl-card__footer">
+          <a class="download-btn download-btn--warm" href="${d.downloadUrl}" target="_blank">${DL_ICON}${d.downloadLabel}</a>
+        </div>
+      </div>`).join('');
+
+    const pageCards = ds.paginas.map(pg => `
+      <div class="page-mockup-card">
+        <div class="page-mockup-thumb page-mockup-thumb--${pg.variant}">
+          <div class="pm-bar"></div>
+          <div class="pm-hero"></div>
+          <div class="pm-rows"><span></span><span></span><span></span></div>
+        </div>
+        <div class="page-mockup-title">${pg.title}</div>
+      </div>`).join('');
+
+    const btnCards = ds.botones.map(b => `
+      <div class="btn-showcase-item">
+        <button class="ds-btn ${b.cls}">${b.label}</button>
+        <span class="btn-showcase-label">${b.label}</span>
+      </div>`).join('');
+
+    const btnDocCards = ds.botonesDocs.map(b => `
+      <div class="btn-doc-card">
+        <div class="btn-doc-head">
+          <button class="ds-btn ${b.cls}">${b.label}</button>
+          <h4>${b.titulo}</h4>
+        </div>
+        <div class="btn-doc-row">
+          <span class="btn-doc-label">Propósito</span>
+          <p>${b.proposito}</p>
+        </div>
+        <div class="btn-doc-row">
+          <span class="btn-doc-label">Casos de uso</span>
+          <p>${b.usos}</p>
+        </div>
+        <div class="btn-doc-row">
+          <span class="btn-doc-label">Tamaños disponibles</span>
+          <div class="btn-doc-sizes">
+            ${b.tallas.map(s => `<button class="ds-btn ${b.cls} ${s.cls}">${s.label}</button>`).join('')}
+          </div>
+        </div>
+        <div class="btn-doc-row">
+          <span class="btn-doc-label">Estados</span>
+          <div class="btn-doc-states">
+            <button class="ds-btn ${b.cls}">Normal</button>
+            <button class="ds-btn ${b.cls} is-hover">Hover</button>
+            <button class="ds-btn ${b.cls} is-active">Active</button>
+            <button class="ds-btn ${b.cls}" disabled>Disabled</button>
+          </div>
+        </div>
+        <div class="btn-doc-row">
+          <span class="btn-doc-label">Buenas prácticas</span>
+          <p>${b.buenasPracticas}</p>
+        </div>
+      </div>`).join('');
+
+    const iconTiles = ds.iconos.map(ic => `
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${dsIcons[ic.key]}</svg>
+        <span>${ic.label}</span>
+      </div>`).join('');
+
+    const shadowCards = ds.sombras.map(s => `
+      <div class="shadow-card ${s.cls}"><span>${s.label}</span></div>`).join('');
+
+    return `
+      <div class="sd-section">
+        <div class="sd-section-title">Logos</div>
+        <div class="sd-logo-row">${logoCards}</div>
+      </div>
+
+      <div class="sd-section">
+        <div class="sd-section-title">Páginas</div>
+        <div class="page-mockup-grid">${pageCards}</div>
+      </div>
+
+      <div class="sd-section">
+        <div class="sd-section-title">Botones</div>
+        <div class="btn-showcase-grid">${btnCards}</div>
+        <div class="btn-doc-grid">${btnDocCards}</div>
+      </div>
+
+      <div class="sd-section">
+        <div class="sd-section-title">Iconos</div>
+        <div class="icon-showcase-grid">${iconTiles}</div>
+        <div class="icon-download-footer">
+          <a class="download-btn download-btn--warm" href="#" target="_blank">${DL_ICON}Descargar PNG</a>
+        </div>
+      </div>
+
+      <div class="sd-section">
+        <div class="sd-section-title">Paginación</div>
+        <div class="pagination-demo">
+          <button class="page-arrow">&larr;</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span class="page-ellipsis">…</span>
+          <button class="page-btn">8</button>
+          <button class="page-arrow">&rarr;</button>
+        </div>
+      </div>
+
+      <div class="sd-section">
+        <div class="sd-section-title">Sombras</div>
+        <div class="shadow-showcase-grid">${shadowCards}</div>
+      </div>`;
+  }
+
+  function renderLandingHub(data) {
+    const grid = document.getElementById('cardGrid');
+    grid.style.display = 'block';
+
+    grid.innerHTML = `
+      <div class="landing-tabs">
+        <button class="landing-tab-btn ${landingTab === 'landing' ? 'active' : ''}" data-tab="landing">Landing</button>
+        <button class="landing-tab-btn ${landingTab === 'sistema' ? 'active' : ''}" data-tab="sistema">Sistema de Diseño</button>
+      </div>
+      <div class="landing-tab-panel" id="landingPanel"></div>`;
+
+    document.querySelectorAll('.landing-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        landingTab = btn.dataset.tab;
+        renderLandingHub(data);
+      });
+    });
+
+    const panel = document.getElementById('landingPanel');
+    panel.innerHTML = landingTab === 'landing'
+      ? buildLandingTabContent(data)
+      : buildSistemaTabContent(data.designSystem);
+
+    /* interactividad simple de la paginación demo */
+    panel.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        panel.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  /* ---- RECURSOS EQUIPO DE DISEÑO (login + repositorio, sin salir del dashboard) ---- */
+  const DESIGN_REPO_SESSION_KEY = 'dropi_design_team_auth';
+
+  /* Credenciales exclusivas del equipo de diseño. Al ser un sitio estático sin
+     backend, esta validación ocurre del lado del cliente: es un control de
+     acceso básico, no una autenticación real. Para producción se recomienda
+     conectar este formulario a un servicio de autenticación (backend propio,
+     Auth0, Firebase Auth, SSO interno de Dropi, etc.). */
+  const DESIGN_TEAM_CREDENTIALS = {
+    usuario:    'Creativosdropi_Cracks',
+    contrasena: 'produccioncreativa_202607'
+  };
+
+  let designRepoDetailBrand = null;
+
+  function buildDesignLoginPanel() {
+    return `
+      <div class="design-repo-panel">
+        <div class="design-login-split" id="designLoginCard">
+
+          <div class="design-login-visual">
+            <span class="design-login-dot design-login-dot--1"></span>
+            <span class="design-login-dot design-login-dot--2"></span>
+            <span class="design-login-dot design-login-dot--3"></span>
+            <span class="design-login-dot design-login-dot--4"></span>
+            <img src="recursos/imagen_hero.png" alt="Repositorio de marcas Dropi" class="design-hero-img">
+            <div class="design-login-brand">Equipo de Diseño</div>
+          </div>
+
+          <div class="design-login-form-panel">
+            <h3 class="login-title">Iniciar sesión</h3>
+            <p class="login-subtitle">Accede al repositorio interno del equipo de diseño.</p>
+
+            <form class="login-form" id="designLoginForm" autocomplete="off">
+              <div class="login-field">
+                <label for="designLoginUser">Usuario</label>
+                <input type="text" id="designLoginUser" placeholder="Tu usuario" autocomplete="username" required>
+              </div>
+              <div class="login-field">
+                <label for="designLoginPass">Contraseña</label>
+                <input type="password" id="designLoginPass" placeholder="Tu contraseña" autocomplete="current-password" required>
+              </div>
+
+              <div class="login-error" id="designLoginError">Usuario o contraseña incorrectos.</div>
+
+              <button type="submit" class="login-btn">Iniciar sesión</button>
+            </form>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  function buildDesignRepoGrid(brands) {
+    const cards = brands.map(b => `
+      <div class="brand-folder-card brand-folder-card--${b.color}" data-brand-key="${b.key}" data-brand-label="${b.label}" data-brand-initial="${b.initial}" data-brand-status="${b.status}">
+        <div class="brand-folder-status brand-folder-status--${b.status === 'ready' ? 'ready' : 'soon'}">${b.status === 'ready' ? 'Disponible' : 'Próximamente'}</div>
+        <div class="brand-folder-logo">
+          <img src="recursos/${b.key}.png" alt="${b.label}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="brand-folder-logo-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="3"/>
+              <circle cx="8.5" cy="8.5" r="1.6"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </span>
+        </div>
+        <div class="brand-folder-name">${b.label}</div>
+        <div class="brand-folder-meta">${b.status === 'ready' ? 'Repositorio de marca completo' : 'Repositorio de marca'}</div>
+      </div>`).join('');
+
+    return `
+      <div class="repo-header repo-header--inline">
+        <div class="design-greeting">
+          <h2 class="design-greeting-title">Hola, diseñador.</h2>
+          <p>En este repositorio encontrarás los archivos necesarios para diseñar cada una de las marcas.</p>
+        </div>
+        <a class="repo-logout" href="#" id="designLogoutLink">Cerrar sesión</a>
+      </div>
+      <div class="brand-folder-grid" id="designBrandGrid">${cards}</div>
+      <div class="repo-detail" id="designRepoDetail"></div>`;
+  }
+
+  function buildDesignRepoDetail(brand) {
+    return `
+      <div class="repo-detail-icon">${brand.initial}</div>
+      <h2>${brand.label}</h2>
+      <p>El repositorio de diseño de ${brand.label} aún no ha sido habilitado. Cuando esté listo, sus carpetas de colores, tipografía, logos y recursos aparecerán aquí con el mismo formato que el repositorio de Dropi.</p>
+      <a class="repo-detail-back" href="#" id="designDetailBack">← Volver al repositorio</a>`;
+  }
+
+  /* ============================================================
+     PÁGINAS DE MARCA — playbook interactivo reutilizable
+     (vive dentro de "Recursos Equipo de Diseño", sin salir del
+     dashboard; sigue el mismo patrón liquid glass del resto del
+     sitio. Un mismo motor —tematizado vía --vlc / --vlc-rgb en
+     CSS— genera la página de Veloces y la de todas las demás
+     submarcas, cada una con su color, tipografía y copy propios)
+     ============================================================ */
+
+  /* convierte un HEX (#RRGGBB) a "r,g,b" para las variables --vlc-rgb */
+  function hexToRgbList(hex) {
+    const h = hex.replace('#', '');
+    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const n = parseInt(full, 16);
+    return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
+  }
+
+  /* genera una variante más oscura del color de marca (para degradados,
+     ej. el banner de tipografía), manteniendo siempre el tono de la marca
+     en vez de un color fijo ajeno a ella */
+  function hexDarken(hex, amount) {
+    const h = hex.replace('#', '');
+    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const n = parseInt(full, 16);
+    const r = Math.max(0, Math.round(((n >> 16) & 255) * (1 - amount)));
+    const g = Math.max(0, Math.round(((n >> 8) & 255) * (1 - amount)));
+    const b = Math.max(0, Math.round((n & 255) * (1 - amount)));
+    return `rgb(${r},${g},${b})`;
+  }
+
+  /* Lista de RESPALDO usada SOLO si una submarca no define su propio
+     arreglo "logos" en BRAND_PAGES. Cada submarca declara su propia
+     cantidad de variantes de logo (pueden ser 3, 6, 14... las que existan
+     realmente) — ya no se comparte automáticamente entre marcas; esta
+     lista de 14 solo actúa como red de seguridad para una marca nueva
+     que aún no fue configurada. Los archivos reales van en
+     recursos/<marca>/logo-N.png; si no existen, se muestra un espacio
+     vacío (ver vlcLogoImgError). */
+  const DEFAULT_LOGO_LABELS = [
+    'Isotipo principal',
+    'Isotipo variante color',
+    'Isotipo variante negra',
+    'Logo oficial color',
+    'Logo oficial blanco',
+    'Logo oficial negro',
+    'Logo compuesto color',
+    'Logo compuesto blanco',
+    'Logo compuesto negro',
+    'Logo compuesto multicolor',
+    'Logo oficial compuesto color',
+    'Logo oficial compuesto blanco',
+    'Logo oficial compuesto negro',
+    'Logo oficial compuesto multicolor',
+  ];
+
+  /* ---- CONFIGURACIÓN DE CADA SUBMARCA ----
+     Cada submarca es 100% independiente: cada arreglo (colors, logos,
+     gallery, audiovisual) puede tener la cantidad de elementos que
+     realmente existan para esa marca — no tienen que igualar los de
+     Veloces, que fue solo la referencia inicial de diseño.
+
+     key         → debe coincidir con el "key" usado en el repositorio de diseño
+     name        → nombre mostrado en el hero ("¿Qué es X?")
+     colorHex    → color de acento de la marca (tematiza TODA la página:
+                   fondos, bordes, botones, dots, etc. vía --vlc/--vlc-rgb)
+     heroImage   → (opcional) ruta a una imagen de fondo propia para el hero,
+                   ej. 'recursos/<marca>/hero.jpg'. Si se omite, se usa el
+                   banner genérico por defecto.
+     colors      → chips del panel "COLORES" del hero. Cantidad libre (no
+                   tiene que ser 4, puede ser 2, 3, 5...).
+     tagline     → texto de introducción de la marca
+     typography  → tipografía oficial mostrada en el banner
+     logos       → (opcional) arreglo de etiquetas para el carrusel de
+                   logos, ej. ['Isotipo principal', 'Logo horizontal', ...].
+                   La cantidad de logos de esta marca ES la cantidad de
+                   etiquetas que pongas aquí (ya no depende de Veloces).
+                   Los archivos deben existir en recursos/<key>/logo-1.png,
+                   logo-2.png, etc., en el mismo orden. Si se omite este
+                   campo, se usa DEFAULT_LOGO_LABELS (14 genéricas) como
+                   respaldo.
+     gallery     → línea gráfica (carrusel inferior). Cantidad libre.
+     audiovisual → recursos en video/animación de la marca. Cantidad libre. */
+  const BRAND_PAGES = {
+    veloces: {
+      key: 'veloces', name: 'Veloces', colorHex: '#FF0072',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#FF0072', label: 'Magenta' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Veloces es la marca de logística exprés de Dropi: entregas rápidas, diseño dinámico y una identidad pensada para transmitir velocidad, energía y confianza en cada kilómetro recorrido.',
+      typography: { name: 'RALEWAY', file: 'recursos/veloces/Raleway.zip', desc: 'Raleway es la tipografía oficial de Veloces: geométrica, moderna y muy legible, usada en titulares y piezas de comunicación de la marca.' },
+      logos: DEFAULT_LOGO_LABELS, /* Veloces sí tiene las 14 variantes reales */
+      gallery: [
+        { title: 'Velocidad', sub: 'sin límites', img: 'recursos/flyer_1.jpeg' },
+        { title: 'Supera', sub: 'tus límites', img: 'recursos/imagen_veloces.png' },
+        { title: 'Diseño que', sub: 'te lleva más lejos', img: 'recursos/Artboard_3.png' },
+        { title: 'Entregas agiles', sub: 'más fuerte', img: 'recursos/recurso_2veloces.jpg' },
+        { title: 'Entrega', sub: 'sin fronteras', img: 'recursos/PortadaVeloces.jpeg' },
+        { title: 'Estilo en', sub: 'movimiento', img: 'recursos/Artboard4.png' },
+      ],
+      audiovisual: [
+        { title: 'Trazo animado', meta: 'Clase en video · 3:10', url: 'recursos/Trazo_Animado.mov' },
+        { title: 'Cortinilla Vertical Veloces', meta: 'Clase en video · 2:45', url: 'recursos/CortinillaVertical_Veloces.mp4' },
+        { title: 'Cortinilla Vertical Veloces sin fondo', meta: 'Clase en video · 3:58', url: 'recursos/Cortinilla_sinfondo_veloces.mov' },
+        { title: 'Cortinilla Horizontal con Fondo', meta: 'Clase en video · 5:20', url: 'recursos/cortinillaH_confondo.mp4' },
+        { title: 'Cortinilla Horizontal sin Fondo', meta: 'Clase en video · 5:20', url: 'recursos/CortinillaH_sinfodo.mp4' },
+      ],
+    },
+
+    leyendas: {
+      key: 'leyendas', name: 'Leyendas', colorHex: '#FF0000',
+       heroImage: 'recursos/leyendas/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#FF0000', label: 'Rojo' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Leyendas es el reconocimiento a los aliados y repartidores que marcan la diferencia en Dropi: una identidad audaz y de alto contraste que celebra a quienes superan cada reto.',
+      typography: [
+        { name: 'CHAKRA PETCH', file: 'recursos/leyendas/ChakraPetch.zip', desc: 'Chakra Petch es la tipografía oficial de Leyendas: de trazo técnico y angular, aporta el carácter futurista propio de la marca.', weights: ['Bold', 'Regular'] },
+        { name: 'RATIONALE', file: 'recursos/leyendas/Rationale.zip', desc: 'Rationale es la tipografía complementaria de Leyendas, usada en textos de apoyo con un carácter técnico y limpio.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial dorado',
+        'Logo oficial naranja',
+      ],
+      gallery: [
+        { title: 'Historias que', sub: 'inspiran', img: 'recursos/leyendas/MedallaCinematografica.png' },
+        { title: 'Grandes', sub: 'hazañas', img: 'recursos/leyendas/Robots.png' },
+        { title: 'Reconocimiento', sub: 'real', img: 'recursos/leyendas/Medalla.png' },
+        { title: 'Reconocimiento', sub: 'real', img: 'recursos/leyendas/leyendas_4.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Intro Leyendas', meta: 'Clase en video · 2:30', url: 'recursos/leyendas/Final_Render.mp4' },
+        { title: 'Tomas Close up armadura Leyendas', meta: 'Clase en video · 3:00', url: 'recursos/leyendas/Tomas_ArmadurasCloseUp.mp4' },
+        { title: 'Tomas Armaduras General', meta: 'Clase en video · 2:15', url: 'recursos/leyendas/Tomas_ArmadurasGeneral.mp4' },
+         { title: 'leyendas Vertical', meta: 'Clase en video · 2:15', url: 'recursos/leyendas/recursos_6.mp4' },
+      ],
+    },
+
+    ecomday: {
+      key: 'ecomday', name: 'EcomDay', colorHex: '#FF4800',
+      heroImage: 'recursos/EcomDay/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#FF4800', label: 'Naranja' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'EcomDay es el evento insignia de e-commerce de Dropi: un espacio de aprendizaje, networking y tendencias para marcas y emprendedores digitales.',
+      typography: [
+        { name: 'TUSKER GROTESK', file: 'recursos/ecomday/TuskerGrotesk.zip', desc: 'Tusker Grotesk es la tipografía oficial de EcomDay: geométrica y contemporánea, coherente con el resto del ecosistema Dropi.', weights: ['Regular'] },
+        { name: 'MONTSERRAT', file: 'recursos/ecomday/Montserrat.zip', desc: 'Montserrat acompaña a Tusker Grotesk en textos de cuerpo, aportando versatilidad y buena legibilidad.', weights: ['Regular'] },
+        { name: 'BEBAS NEUE', file: 'recursos/ecomday/BebasNeue.zip', desc: 'Bebas Neue se usa en titulares de alto impacto dentro de las piezas de EcomDay.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial color',
+        'Logo oficial blanco',
+        'Logo evento (fecha)',
+      ],
+      gallery: [
+        { title: 'El evento', sub: 'del e-commerce', img: 'recursos/ecomday/historia_destacada.png' },
+        { title: 'Networking', sub: 'y tendencias', img: 'recursos/ecomday/recurso_2.png' },
+        { title: 'Aprende y', sub: 'crece', img: 'recursos/ecomday/recurso_3.png' },
+        { title: 'Aprende y', sub: 'crece', img: 'recursos/ecomday/recurso_4.png' },
+        { title: 'Aprende y', sub: 'crece', img: 'recursos/ecomday/recurso_5.png' },
+        
+
+      ],
+      audiovisual: [
+        { title: 'Cortinilla Naranja', meta: 'Clase en video · 00:02', url: 'recursos/ecomday/cortinilla_naranja.mp4' },
+        { title: 'Cortinilla sin fondo', meta: 'Clase en video · 2:20', url: 'recursos/ecomday/cortinilla_sinfondo.mov' },
+      ],
+    },
+
+    dropiapp: {
+      key: 'dropiapp', name: 'Dropi App', colorHex: '#FBC15E',
+      heroImage: 'recursos/dropiapp/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#FBC15E', label: 'Amarillo' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Dropi App es el corazón del ecosistema: la aplicación con la que miles de emprendedores gestionan pedidos, envíos y pagos desde su celular.',
+      typography: { name: 'SORA', file: 'recursos/dropiapp/Sora.zip', desc: 'Sora es la tipografía oficial de Dropi App: clara y legible incluso en pantallas pequeñas, pensada para producto.' },
+      logos: [
+        'Logo Dropi APP',
+        'Logo Dropi APP COMPUESTO',
+        'Logo Dropi APP naranja',
+        'Logo Dropi APP2 naranja',
+      ],
+      gallery: [
+        { title: 'Gestiona todo', sub: 'desde tu celular', img: 'recursos/dropiapp/gal-1.jpg' },
+        { title: 'Pedidos y', sub: 'envíos', img: 'recursos/dropiapp/gal-2.jpg' },
+        { title: 'Tu negocio,', sub: 'en tus manos', img: 'recursos/dropiapp/gal-3.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Dropi app Beneficios', meta: 'Clase en video · 00:30', url: 'recursos/dropiapp/DropiApp_Beneficios.mp4' },
+        { title: 'Cortinilla Dropi App', meta: 'Clase en video · 2:10', url: 'recursos/dropiapp/Dropiapp_cortinilla.mp4' },
+        { title: 'Cortinilla Dropi App', meta: 'Clase en video · 2:10', url: 'recursos/dropiapp/Dropiapp_cortinilla.mp4' },
+      ],
+    },
+
+    ecommerceleague: {
+      key: 'ecommerceleague', name: 'Ecommerce League', colorHex: '#FFFFFF',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Ecommerce League es la comunidad de vendedores más grande de Dropi: un espacio para competir, aprender y crecer entre pares del comercio electrónico.',
+      typography: [
+        { name: 'TUSKER GROTESK', file: 'recursos/ecommerceleague/TuskerGrotesk.zip', desc: 'Tusker Grotesk es la tipografía de titulares de Ecommerce League: geométrica y de alto contraste.', weights: ['Regular'] },
+        { name: 'MONTSERRAT', file: 'recursos/ecommerceleague/Montserrat.zip', desc: 'Montserrat es la tipografía de texto de Ecommerce League: sobria y versátil, acorde a una identidad translúcida en blanco.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial blanco',
+        'Logo oficial negro',
+      ],
+      gallery: [
+        { title: 'La liga del', sub: 'e-commerce', img: 'recursos/ecommerceleague/gal-1.jpg' },
+        { title: 'Compite y', sub: 'crece', img: 'recursos/ecommerceleague/gal-2.jpg' },
+        { title: 'Comunidad', sub: 'de vendedores', img: 'recursos/ecommerceleague/gal-3.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Intro de marca', meta: 'Clase en video · 2:05', url: 'recursos/ecommerceleague/intro.mp4' },
+        { title: 'Cortinilla Ecommerce League', meta: 'Clase en video · 2:30', url: 'recursos/ecommerceleague/cortinilla.mp4' },
+      ],
+    },
+
+    academy: {
+      key: 'academy', name: 'Dropi Academy', colorHex: '#F24405',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#F24405', label: 'Naranja rojizo' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Dropi Academy es el centro de formación de Dropi: cursos, certificaciones y contenido educativo para impulsar a emprendedores y equipos internos.',
+      typography: [
+        { name: 'TUSKER GROTESK', file: 'recursos/academy/TuskerGrotesk.zip', desc: 'Tusker Grotesk es la tipografía de titulares de Dropi Academy: geométrica y de carácter contemporáneo.', weights: ['Regular'] },
+        { name: 'MONTSERRAT', file: 'recursos/academy/Montserrat.zip', desc: 'Montserrat es la tipografía de texto de Dropi Academy: clara y amigable, ideal para contenido educativo.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial color',
+        'Logo oficial blanco',
+        'Logo oficial negro',
+        'Sello de certificación',
+      ],
+      gallery: [
+        { title: 'Aprende con', sub: 'Dropi Academy', img: 'recursos/academy/h1_academy.jpg' },
+        { title: 'Cursos y', sub: 'certificaciones', img: 'recursos/academy/h_1.jpg' },
+        { title: 'Cursos y', sub: 'certificaciones', img: 'recursos/academy/h_2.jpg' },
+        { title: 'Cursos y', sub: 'certificaciones', img: 'recursos/academy/h_3.jpg' },
+       { title: 'Aprende con', sub: 'Dropi Academy', img: 'recursos/academy/h2_academy.jpg' },
+       { title: 'Aprende con', sub: 'Dropi Academy', img: 'recursos/academy/h4_academy.jpg' },
+       { title: 'Aprende con', sub: 'Dropi Academy', img: 'recursos/academy/h5_academy.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Intro de marca', meta: 'Clase en video · 2:15', url: 'recursos/academy/Intro-Dropi-Academy.mp4' },
+        { title: 'logo Sin fondo', meta: 'Clase en video · 2:40', url: 'recursos/academy/LogoSinfondo_Cortinilla.mov' },
+        { title: 'Corte final', meta: 'Clase en video · 5:00', url: 'recursos/academy/Cort_Final.mov' },
+      ],
+    },
+
+    dropiturbo: {
+      key: 'dropiturbo', name: 'Dropi Turbo', colorHex: '#B87333',
+      heroImage: 'recursos/dropiturbo/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#B87333', label: 'Cobre' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Dropi Turbo es la experiencia premium de entregas exprés: velocidad, precisión y una estética metálica en tono cobre que transmite potencia.',
+      typography: [
+        { name: 'TUSKER GROTESK', file: 'recursos/dropiturbo/TuskerGrotesk.zip', desc: 'Tusker Grotesk es la tipografía de titulares de Dropi Turbo: angular y técnica, refuerza la sensación de velocidad de la marca.', weights: ['Regular'] },
+        { name: 'MONTSERRAT', file: 'recursos/dropiturbo/Montserrat.zip', desc: 'Montserrat es la tipografía de texto de Dropi Turbo: clara y versátil para piezas de comunicación.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial blanco',
+      ],
+      gallery: [
+        { title: 'Potencia', sub: 'en cada entrega', img: 'recursos/dropiturbo/recurso_1.jpg' },
+        { title: 'Velocidad', sub: 'premium', img: 'recursos/dropiturbo/recurso_2.png' },
+        { title: 'Precisión', sub: 'de principio a fin', img: 'recursos/dropiturbo/recurso_3.png' },
+        { title: 'Precisión', sub: 'de principio a fin', img: 'recursos/dropiturbo/recurso_4.jpg' },
+        { title: 'Precisión', sub: 'de principio a fin', img: 'recursos/dropiturbo/recurso_5.png' },
+        { title: 'Precisión', sub: 'de principio a fin', img: 'recursos/dropiturbo/recurso_6.jpg' },
+        { title: 'Precisión', sub: 'de principio a fin', img: 'recursos/dropiturbo/recurso_7.png' },
+
+      ],
+      audiovisual: [
+        { title: 'Video Intro mustang', meta: 'Clase en video · 1:45', url: 'recursos/dropiturbo/Mustang_videointro.mp4' },
+        { title: 'Cierre Dropi Turbo', meta: 'Clase en video · 0:10', url: 'recursos/dropiturbo/cortinilla.mp4' },
+      ],
+    },
+
+    confio: {
+      key: 'confio', name: 'Confío', colorHex: '#0147BA',
+      heroImage: 'recursos/confio/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#0147BA', label: 'Azul' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Confío es la solución de pagos de Dropi: transacciones seguras, claras y confiables para todo el ecosistema de emprendedores.',
+      typography: [
+        { name: 'BENNI', file: 'recursos/confio/Benni.zip', desc: 'Benni es una de las tipografías oficiales de Confío, usada en piezas destacadas de la marca.', weights: ['Regular'] },
+        { name: 'COMMUTERS SANS', file: 'recursos/confio/CommutersSans.zip', desc: 'Commuters Sans aporta claridad y un carácter técnico a los textos de producto de Confío.', weights: ['Regular'] },
+        { name: 'NEKST', file: 'recursos/confio/Nekst.zip', desc: 'Nekst es una tipografía geométrica usada en titulares y elementos de interfaz de Confío.', weights: ['Regular'] },
+        { name: 'NEUE PLAK', file: 'recursos/confio/NeuePlak.zip', desc: 'Neue Plak es la tipografía de apoyo de Confío: clara y de confianza, adecuada para un producto financiero.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Logo oficial color',
+        'Logo oficial blanco',
+      ],
+      gallery: [
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_8.png' },
+        { title: 'Seguridad', sub: 'ante todo', img: 'recursos/confio/confio_1.jpeg' },
+        { title: 'Confianza', sub: 'en cada transacción', img: 'recursos/confio/confio_2.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_3.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_4.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_5.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_6.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_7.jpeg' },
+        { title: 'Pagos', sub: 'sin fricción', img: 'recursos/confio/confio_9.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Cortinilla final', meta: 'Clase en video · 2:10', url: 'recursos/confio/Cortinilla_final.mov' },
+        { title: 'Transición Confío', meta: 'Clase en video · 2:35', url: 'recursos/confio/transicion.mov' },
+      ],
+    },
+
+    chateapro: {
+      key: 'chateapro', name: 'Chatea Pro', colorHex: '#009EE3',
+      heroImage: 'recursos/chateapro/hero.jpg',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#009EE3', label: 'Celeste' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Chatea Pro es la herramienta de mensajería y atención al cliente de Dropi: conversaciones ágiles y cercanas para potenciar las ventas.',
+      typography: [
+        { name: 'BASIQUE', file: 'recursos/chateapro/Basique.zip', desc: 'Basique es la tipografía de titulares de Chatea Pro, con un trazo cercano y contemporáneo.', weights: ['Regular'] },
+        { name: 'BENZIN', file: 'recursos/chateapro/Benzin.zip', desc: 'Benzin aporta un acento geométrico y distintivo a piezas destacadas de la marca.', weights: ['Regular'] },
+        { name: 'SOURCE SANS', file: 'recursos/chateapro/SourceSans.zip', desc: 'Source Sans es la tipografía de texto de Chatea Pro: redondeada y cercana, acorde a una herramienta de conversación.', weights: ['Regular'] },
+      ],
+      logos: [
+        'Isotipo principal',
+        'Icono de app (app icon)',
+        'Logo oficial color',
+        'Logo oficial blanco',
+      ],
+      gallery: [
+        { title: 'Conversaciones', sub: 'que venden', img: 'recursos/chateapro/chatea_1.jpg' },
+        { title: 'Atención', sub: 'ágil', img: 'recursos/chateapro/chatea_2.jpg' },
+        { title: 'Cercanía', sub: 'con tus clientes', img: 'recursos/chateapro/chatea_3.jpeg' },
+        { title: 'Cercanía', sub: 'con tus clientes', img: 'recursos/chateapro/chatea_4.jpeg' },
+        { title: 'Cercanía', sub: 'con tus clientes', img: 'recursos/chateapro/chatea_5.jpeg' },
+        { title: 'Cercanía', sub: 'con tus clientes', img: 'recursos/chateapro/chatea_6.jpg' },
+        { title: 'Cercanía', sub: 'con tus clientes', img: 'recursos/chateapro/chatea_7.png' },
+      ],
+      audiovisual: [
+        { title: 'Intro de marca', meta: 'Clase en video · 2:05', url: 'recursos/chateapro/intro.mp4' },
+        { title: 'Cortinilla Chatea Pro', meta: 'Clase en video · 2:25', url: 'recursos/chateapro/cortinilla.mp4' },
+        { title: 'Video institucional Horizontal', meta: 'Clase en video · 00:19', url: 'recursos/chateapro/CHATEAPRO_Horizontal.mp4' },
+        { title: 'Video institucional Vertical', meta: 'Clase en video · 00:19', url: 'recursos/chateapro/CHATEAPRO_Vertical.mp4' },
+        { title: 'Video institucional 2 Horizontal', meta: 'Clase en video · 00:19', url: 'recursos/chateapro/CHATEAPRO1_Horizontal.mp4' },
+        { title: 'Video institucional Vertical 2', meta: 'Clase en video · 00:19', url: 'recursos/chateapro/CHATEAPRO1_Vertical.mp4' },
+      ],
+    },
+
+    dropicard: {
+      key: 'dropicard', name: 'Dropi Card', colorHex: '#C8C8CD',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#C8C8CD', label: 'Gris' },
+        { hex: '#111111', label: 'Negro' },
+      ],
+      tagline: 'Dropi Card es la tarjeta del ecosistema Dropi: control financiero, beneficios y una identidad sobria en tonos metálicos.',
+      typography: { name: 'SPACE GROTESK', file: 'recursos/dropicard/SpaceGrotesk.zip', desc: 'Space Grotesk es la tipografía oficial de Dropi Card: moderna y de corte técnico, coherente con un producto financiero.' },
+      logos: [
+        'Isotipo principal',
+        'Logo oficial gris',
+        'Logo oficial negro',
+      ],
+      gallery: [
+        { title: 'Tu tarjeta,', sub: 'tu control', img: 'recursos/dropicard/gal-1.jpg' },
+        { title: 'Beneficios', sub: 'reales', img: 'recursos/dropicard/gal-2.jpg' },
+        { title: 'Diseño', sub: 'metálico', img: 'recursos/dropicard/gal-3.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Intro de marca', meta: 'Clase en video · 2:00', url: 'recursos/dropicard/intro.mp4' },
+        { title: 'Cortinilla Dropi Card', meta: 'Clase en video · 2:20', url: 'recursos/dropicard/cortinilla.mp4' },
+      ],
+    },
+
+    n8n: {
+      key: 'n8n', name: 'n8n', colorHex: '#2CB060',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#2CB060', label: 'Verde' },
+        { hex: '#111111', label: 'Negro' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'n8n es el motor de automatización interno de Dropi: flujos de trabajo que conectan herramientas y agilizan procesos entre equipos.',
+      typography: { name: 'JETBRAINS MONO', file: 'recursos/n8n/JetBrainsMono.zip', desc: 'JetBrains Mono es la tipografía usada para documentar los flujos de n8n: técnica y de alta legibilidad para contextos de automatización.' },
+      logos: [
+        'Isotipo principal',
+        'Logo oficial verde',
+        'Logo oficial blanco',
+      ],
+      gallery: [
+        { title: 'Flujos que', sub: 'ahorran tiempo', img: 'recursos/n8n/gal-1.jpg' },
+        { title: 'Automatización', sub: 'interna', img: 'recursos/n8n/gal-2.jpg' },
+        { title: 'Equipos', sub: 'conectados', img: 'recursos/n8n/gal-3.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Intro al flujo', meta: 'Clase en video · 3:00', url: 'recursos/n8n/intro.mp4' },
+        { title: 'Cortinilla n8n', meta: 'Clase en video · 2:10', url: 'recursos/n8n/cortinilla.mp4' },
+      ],
+    },
+
+    expowinner: {
+      key: 'expowinner', name: 'Expo Winner', colorHex: '#EC6F2D',
+      colors: [
+        { hex: '#FFFFFF', label: 'Blanco' },
+        { hex: '#EC6F2D', label: 'Naranja' },
+        { hex: '#111111', label: 'Carbón' },
+        { hex: '#7D7D7D', label: 'Gris' },
+      ],
+      tagline: 'Expo Winner es el evento anual que reconoce a los mejores aliados y equipos de Dropi: una experiencia con identidad HUD, tonos carbón y acentos naranjas.',
+      typography: { name: 'TUSKER GROTESK', file: 'recursos/expowinner/TuskerGrotesk.zip', desc: 'Tusker Grotesk (titulares) y Montserrat (texto) son las tipografías oficiales de Expo Winner, coherentes con el brand book del evento.' },
+      logos: [
+        'Isotipo principal',
+        'Logo oficial color',
+        'Logo oficial blanco',
+        'Logo oficial negro',
+        'Logo evento (con año)',
+        'Variación HUD',
+        'Marca de agua',
+      ],
+      gallery: [
+        { title: 'La noche de', sub: 'los ganadores', img: 'recursos/expowinner/gal-1.jpg' },
+        { title: 'Reconocimiento', sub: 'al equipo', img: 'recursos/expowinner/gal-2.jpg' },
+        { title: 'Identidad', sub: 'HUD', img: 'recursos/expowinner/gal-3.jpg' },
+      ],
+      audiovisual: [
+        { title: 'Recap del evento', meta: 'Clase en video · 4:30', url: 'recursos/expowinner/recap.mp4' },
+        { title: 'Cortinilla Expo Winner', meta: 'Clase en video · 2:45', url: 'recursos/expowinner/cortinilla.mp4' },
+      ],
+    },
+  };
+
+  window.vlcLogoImgError = function(imgEl) {
+    /* No hay imagen real todavía: se deja el espacio vacío (sin ícono ni
+       vector de respaldo) listo para recibir la previsualización real. */
+    imgEl.closest('.vlc-logo-card-img')?.classList.add('is-empty');
+    imgEl.remove();
+  };
+
+  /* marca activa actualmente mostrada en la página de playbook */
+  let currentBrandCfg = null;
+
+  function buildBrandPage(cfg) {
+    const colorDots = cfg.colors.map(c => `<span class="vlc-color-dot" style="background:${c.hex}; box-shadow:0 0 18px ${c.hex}55;" title="${c.hex}"></span>`).join('');
+
+    /* "typography" puede venir como un solo objeto (marcas antiguas) o como
+       un arreglo de fuentes (una tarjeta por fuente, con botón de descarga
+       propio). Se normaliza siempre a arreglo. */
+    const typoList = Array.isArray(cfg.typography) ? cfg.typography : [cfg.typography];
+    const typoCards = typoList.map(t => `
+      <div class="vlc-typo-card">
+        <h2>${t.name}</h2>
+        ${t.weights && t.weights.length ? `<div class="vlc-typo-weights">${t.weights.map(w => `<span class="weight-pill">${w}</span>`).join('')}</div>` : ''}
+        <p>${t.desc}</p>
+        <a class="vlc-typo-download" href="${t.file}" target="_blank">${DL_ICON}Descargar</a>
+      </div>`).join('');
+
+    const avRows = cfg.audiovisual.map(v => `
+      <div class="vlc-av-item">
+        <div class="vlc-av-info">
+          <span class="vlc-av-title">${v.title}</span>
+          <span class="vlc-av-meta">${v.meta}</span>
+        </div>
+        <a class="vlc-av-dl" href="${v.url}" target="_blank" title="Descargar video">${DL_ICON}</a>
+      </div>`).join('');
+
+    const galCards = cfg.gallery.map((g, i) => `
+      <div class="vlc-gal-card" data-i="${i}">
+        <img src="${g.img}" alt="${g.title} ${g.sub}" onerror="this.remove()">
+        <div class="vlc-gal-label">${g.title}<span>${g.sub} →</span></div>
+      </div>`).join('');
+
+    const dots = cfg.gallery.map((_, i) => `<span class="vlc-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`).join('');
+
+    /* imagen de fondo del hero: cada marca puede traer la suya propia
+       (cfg.heroImage); si no la define, se usa el banner genérico */
+    const heroImgVar = cfg.heroImage ? ` --vlc-hero-img:url('${cfg.heroImage}');` : '';
+
+    return `
+    <div class="vlc-page" style="--vlc:${cfg.colorHex}; --vlc-rgb:${hexToRgbList(cfg.colorHex)}; --vlc-deep:${hexDarken(cfg.colorHex, 0.4)};${heroImgVar}">
+      <button class="vlc-back" id="vlcBack">← Volver al repositorio</button>
+
+      <section class="vlc-hero">
+        <div class="vlc-hero-bg" id="vlcHeroBg"></div>
+        <span class="vlc-hero-shape vlc-hero-shape--1"></span>
+        <span class="vlc-hero-shape vlc-hero-shape--2"></span>
+        <div class="vlc-hero-content">
+          <h1>¿Qué es <span>${cfg.name}</span>?</h1>
+          <p>${cfg.tagline}</p>
+        </div>
+        <div class="vlc-colors-panel">
+          <span class="vlc-colors-title">COLORES</span>
+          ${colorDots}
+        </div>
+      </section>
+
+      <div class="vlc-divider"></div>
+
+      <div class="vlc-row">
+        <section class="vlc-panel vlc-logos-panel">
+          <span class="vlc-pill-title">LOGOS</span>
+          <div class="vlc-logo-coverflow">
+            <button class="vlc-arrow vlc-logo-cf-arrow vlc-logo-cf-arrow--prev" id="vlcLogoPrev" aria-label="Logo anterior">‹</button>
+            <div class="vlc-logo-cf-stage" id="vlcLogoCfTrack"></div>
+            <button class="vlc-arrow vlc-logo-cf-arrow vlc-logo-cf-arrow--next" id="vlcLogoNext" aria-label="Logo siguiente">›</button>
+          </div>
+          <div class="vlc-logo-label" id="vlcLogoLabel"></div>
+          <a class="download-btn download-btn--veloces" id="vlcLogoDl" href="#" download>${DL_ICON}Descargar</a>
+        </section>
+
+        <section class="vlc-panel vlc-av-panel">
+          <span class="vlc-pill-title">RECURSOS AUDIOVISUALES</span>
+          <div class="vlc-av-list">${avRows}</div>
+        </section>
+      </div>
+
+      <div class="vlc-divider"></div>
+
+      <section class="vlc-typo-section">
+        <span class="vlc-pill-title">TIPOGRAFÍA</span>
+        <div class="vlc-typo-grid">${typoCards}</div>
+      </section>
+
+      <div class="vlc-divider"></div>
+
+      <section class="vlc-gallery">
+        <span class="vlc-tag">DISEÑO VISUAL</span>
+        <h2 class="vlc-gallery-title">Línea gráfica ${cfg.name}</h2>
+        <p class="vlc-gallery-desc">Diseños que comunican la identidad y el tono propios de ${cfg.name}.</p>
+        <div class="vlc-gallery-carousel">
+          <button class="vlc-arrow" id="vlcGalPrev" aria-label="Anterior">‹</button>
+          <div class="vlc-gallery-track" id="vlcGalTrack">${galCards}</div>
+          <button class="vlc-arrow" id="vlcGalNext" aria-label="Siguiente">›</button>
+        </div>
+        <div class="vlc-dots" id="vlcGalDots">${dots}</div>
+      </section>
+
+      <div class="vlc-divider"></div>
+
+      <section class="ed-section">
+        <span class="vlc-tag">EQUIPO CREATIVO</span>
+        <h2 class="vlc-gallery-title">Diseñador, sube tus editables destacados</h2>
+        <p class="vlc-gallery-desc">Comparte tus mejores carruseles e historias para que todo el equipo de ${cfg.name} pueda reutilizarlos.</p>
+        <div id="edMount"></div>
+      </section>
+
+    </div>`;
+  }
+
+  /* ============================================================
+     PLAYBOOKS — catálogo de brand books completos (reemplaza las
+     antiguas tarjetas de "Expo winner" y "Dropi card" dentro del
+     repositorio de diseño). Cada tarjeta enlaza al brand book
+     independiente de esa marca/evento.
+     ============================================================ */
+  const PLAYBOOKS = [
+    {
+      key: 'leyendas',
+      name: 'Leyendas',
+      colorHex: '#FF0000',
+      cover: 'recursos/leyendas/hero.jpg',
+      desc: 'Brand book completo de Leyendas: colorimetría, tipografía, logotipo y línea gráfica de la marca.',
+      url: 'leyendas-playbook.html',
+    },
+    {
+      key: 'expowinner',
+      name: 'Expo Winner',
+      colorHex: '#EC6F2D',
+      cover: 'recursos/expowinner/gal-1.jpg',
+      desc: 'Brand book completo de Expo Winner: identidad HUD, tipografía y línea gráfica del evento.',
+      url: 'expowinner-playbook.html',
+    },
+  ];
+
+  function buildPlaybooksPage() {
+    const cards = PLAYBOOKS.map(pb => `
+      <div class="pb-card" style="--pb:${pb.colorHex}; --pb-rgb:${hexToRgbList(pb.colorHex)};">
+        <div class="pb-card-cover" style="background-image:url('${pb.cover}')"></div>
+        <div class="pb-card-body">
+          <h2>${pb.name}</h2>
+          <p>${pb.desc}</p>
+          <a class="pb-card-btn" href="${pb.url}" target="_blank" rel="noopener">Descubre este playbook</a>
+        </div>
+      </div>`).join('');
+
+    return `
+    <div class="pb-page">
+      <button class="vlc-back" id="pbBack">← Volver al repositorio</button>
+      <div class="pb-header">
+        <span class="vlc-tag">DROPI · PLAYBOOKS</span>
+        <h1>Playbooks de marca</h1>
+        <p>Explora los brand books completos de cada evento y submarca Dropi.</p>
+      </div>
+      <div class="pb-grid">${cards}</div>
+    </div>`;
+  }
+
+  /* ============================================================
+     N8N — panel informativo tipo dashboard (reemplaza el playbook
+     genérico de colores/logos/tipografía para esta "marca", ya que
+     n8n es una herramienta interna y no una submarca visual).
+     ============================================================ */
+  const N8N_DASHBOARD = [
+    {
+      title: 'Automatización de tareas diarias',
+      desc: 'De qué trata: flujos que ejecutan tareas repetitivas del equipo de forma automática cada día —reportes, sincronización de datos, recordatorios internos— para reducir el trabajo manual y evitar errores humanos.',
+    },
+    {
+      title: 'Automatización de eventos',
+      desc: 'Flujos disparados por eventos puntuales dentro del ecosistema Dropi (nuevas órdenes, cambios de estado, registros) que activan acciones automáticas en cadena entre distintas herramientas.',
+    },
+    {
+      title: 'Alerta de eventos',
+      desc: 'Notificaciones automáticas hacia el equipo (Slack, correo, WhatsApp) cuando ocurre un evento crítico o una falla en algún flujo, para poder reaccionar a tiempo.',
+    },
+  ];
+
+  function buildN8nDashboard() {
+    const cards = N8N_DASHBOARD.map(item => `
+      <div class="n8n-dash-card">
+        <h2>${item.title}</h2>
+        <p>${item.desc}</p>
+      </div>`).join('');
+
+    return `
+    <div class="n8n-dash" style="--vlc:#2CB060; --vlc-rgb:${hexToRgbList('#2CB060')};">
+      <button class="vlc-back" id="n8nBack">← Volver al repositorio</button>
+      <div class="n8n-dash-header">
+        <span class="vlc-tag">N8N · AUTOMATIZACIÓN</span>
+        <h1>Panel de automatización</h1>
+        <p>Un vistazo rápido a los flujos de automatización que n8n mantiene activos para el equipo Dropi.</p>
+      </div>
+      <div class="n8n-dash-grid">${cards}</div>
+    </div>`;
+  }
+
+  let vlcActiveLogoLabels = DEFAULT_LOGO_LABELS; // etiquetas de la marca actualmente abierta
+  let vlcLogoFiltered = vlcActiveLogoLabels.map((_, i) => i); // índices visibles según el filtro activo
+  let vlcLogoActive   = 0; // posición activa dentro de vlcLogoFiltered
+
+  function vlcRenderLogoCoverflow() {
+    /* cada marca trae su propia cantidad y etiquetas de logo; si no
+       define "logos", se usa la lista de respaldo genérica */
+    vlcActiveLogoLabels = currentBrandCfg.logos || DEFAULT_LOGO_LABELS;
+    vlcLogoFiltered = vlcActiveLogoLabels.map((_, i) => i);
+    vlcLogoActive = 0;
+
+    const brandKey = currentBrandCfg.key;
+    const track = document.getElementById('vlcLogoCfTrack');
+    track.innerHTML = vlcLogoFiltered.map((idx, pos) => {
+      const label = vlcActiveLogoLabels[idx];
+      const n = idx + 1;
+      return `
+      <div class="vlc-logo-card" data-pos="${pos}">
+        <div class="vlc-logo-card-glass">
+          <a class="vlc-logo-card-expand" href="recursos/${brandKey}/logo-${n}.png" target="_blank" title="Ver logo completo">${VLC_EXPAND_ICON}Expand</a>
+          <span class="vlc-logo-card-count">${pos + 1}/${vlcLogoFiltered.length}</span>
+          <div class="vlc-logo-card-img">
+            <img src="recursos/${brandKey}/logo-${n}.png" alt="${label}" onerror="window.vlcLogoImgError(this)">
+          </div>
+          <div class="vlc-logo-card-bottom">
+            <strong>${label}</strong>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    track.querySelectorAll('.vlc-logo-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.vlc-logo-card-expand')) return; // dejar que el link abra la imagen
+        vlcLogoActive = parseInt(card.dataset.pos, 10);
+        vlcLayoutLogoCoverflow();
+      });
+    });
+
+    vlcLayoutLogoCoverflow();
+  }
+
+  function vlcLayoutLogoCoverflow() {
+    const brandKey = currentBrandCfg.key;
+    const cards = document.querySelectorAll('#vlcLogoCfTrack .vlc-logo-card');
+    cards.forEach(card => {
+      const pos    = parseInt(card.dataset.pos, 10);
+      const offset = pos - vlcLogoActive;
+      const clamp  = Math.max(-3, Math.min(3, offset));
+      const dist   = Math.abs(clamp);
+      const tx     = clamp * 96;
+      const scale  = 1 - dist * 0.15;
+      const rotY   = clamp * -24;
+      const isOut  = Math.abs(offset) > 3;
+
+      card.style.transform = `translate(-50%, -50%) translateX(${tx}px) scale(${scale}) rotateY(${rotY}deg)`;
+      card.style.zIndex    = 100 - dist;
+      card.style.opacity   = isOut ? 0 : 1 - dist * 0.24;
+      card.style.pointerEvents = isOut ? 'none' : 'auto';
+      card.classList.toggle('is-active', offset === 0);
+    });
+
+    const activeIdx = vlcLogoFiltered[vlcLogoActive];
+    const label     = vlcActiveLogoLabels[activeIdx];
+    document.getElementById('vlcLogoLabel').textContent = `${label} · ${vlcLogoActive + 1}/${vlcLogoFiltered.length}`;
+    document.getElementById('vlcLogoDl').href = `recursos/${brandKey}/logo-${activeIdx + 1}.png`;
+  }
+
+  /* ---- DISEÑADOR, SUBE TUS EDITABLES DESTACADOS ---- */
+  const FOLDER_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>`;
+  const ED_MAX_PERSIST_BYTES = 3.5 * 1024 * 1024; /* ~3.5MB: límite práctico de localStorage por archivo */
+
+  let edRepoCache = null;
+  function edRepoKey() {
+    /* cada submarca guarda sus editables por separado, sin mezclarse entre sí */
+    return `dropi_${currentBrandCfg.key}_editables_repo`;
+  }
+  function edGetRepo() {
+    /* se cachea en memoria: si luego el guardado en localStorage falla
+       (típico con .ai/.psd pesados), la vista sigue mostrando lo que
+       hay en memoria en vez de releer un localStorage desactualizado —
+       antes esto hacía que los archivos "no aparecieran" tras subirlos. */
+    if (edRepoCache) return edRepoCache;
+    try { edRepoCache = JSON.parse(localStorage.getItem(edRepoKey())) || []; }
+    catch (e) { edRepoCache = []; }
+    return edRepoCache;
+  }
+  function edSaveRepo(list) {
+    edRepoCache = list;
+    try { localStorage.setItem(edRepoKey(), JSON.stringify(list)); return true; }
+    catch (e) { return false; /* archivo demasiado pesado para localStorage */ }
+  }
+
+  /* Detecta el tipo real de archivo por extensión, ya que los editables
+     suelen ser fuentes de diseño (.ai, .psd) y no solo imágenes planas. */
+  function edFileKind(filename) {
+    const ext = (filename.split('.').pop() || '').toLowerCase();
+    if (['png','jpg','jpeg','gif','webp','svg'].includes(ext)) return { kind:'image', ext };
+    if (ext === 'psd') return { kind:'psd', ext };
+    if (ext === 'ai')  return { kind:'ai',  ext };
+    if (ext === 'pdf') return { kind:'pdf', ext };
+    return { kind:'file', ext: ext || 'archivo' };
+  }
+
+  const ED_KIND_META = {
+    psd:  { label:'PSD',  color:'#31c5f0', icon:'<path d="M4 4h16v16H4z"/><path d="M8 9h3.5a2 2 0 0 1 0 4H8V9zM8 13v4"/>' },
+    ai:   { label:'AI',   color:'#ff9900', icon:'<path d="M4 4h16v16H4z"/><path d="M8 16l2.5-8h2L15 16m-5.5-3h4"/>' },
+    pdf:  { label:'PDF',  color:'#f0524a', icon:'<path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/>' },
+    file: { label:'ARCHIVO', color:'#9c9893', icon:'<path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/>' },
+  };
+
+  /* thumbnail: imagen real si es un formato rasterizable; si es .ai/.psd/.pdf
+     (no renderizables en el navegador) se muestra una insignia con el tipo
+     de archivo, ya que el navegador no puede generar una vista previa real. */
+  function edThumbHtml(item) {
+    if (item.kind === 'image') {
+      return `<img src="${item.dataUrl}" alt="${item.nombre}">`;
+    }
+    const meta = ED_KIND_META[item.kind] || ED_KIND_META.file;
+    return `
+      <div class="ed-file-badge" style="--badge-color:${meta.color}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${meta.icon}</svg>
+        <span>${meta.label}</span>
+      </div>`;
+  }
+
+  function edCard(item) {
+    const canDownload = !!item.dataUrl;
+    return `
+      <div class="ed-card">
+        <div class="ed-card-thumb">${edThumbHtml(item)}</div>
+        <div class="ed-card-body">
+          <div class="ed-card-title">${item.nombre}</div>
+          <div class="ed-card-author">${item.autor}</div>
+        </div>
+        ${canDownload
+          ? `<a class="download-btn download-btn--veloces ed-card-dl" href="${item.dataUrl}" download="${item.nombre.replace(/\s+/g,'_')}.${item.ext}">${DL_ICON}Descargar</a>`
+          : `<span class="ed-card-dl ed-card-dl--unavailable">Archivo muy pesado para conservar</span>`}
+      </div>`;
+  }
+
+  function edRenderRepo() {
+    const repo = edGetRepo();
+    const carruseles = repo.filter(i => i.categoria === 'carrusel');
+    const historias   = repo.filter(i => i.categoria === 'historia');
+
+    document.getElementById('edCountCarrusel').textContent = carruseles.length;
+    document.getElementById('edCountHistoria').textContent = historias.length;
+
+    document.getElementById('edGridCarrusel').innerHTML = carruseles.length
+      ? carruseles.map(edCard).join('')
+      : `<p class="ed-folder-empty">Aún no hay carruseles compartidos.</p>`;
+
+    document.getElementById('edGridHistoria').innerHTML = historias.length
+      ? historias.map(edCard).join('')
+      : `<p class="ed-folder-empty">Aún no hay historias compartidas.</p>`;
+  }
+
+  function initEditablesSection() {
+    edRepoCache = null; /* se recarga desde el localStorage propio de la marca activa */
+    const mount = document.getElementById('edMount');
+    mount.innerHTML = `
+      <div class="ed-banner">
+        <div class="ed-upload-window">
+          <span class="vlc-pill-title">SUBIR EDITABLE</span>
+          <form id="edUploadForm" class="ed-form" autocomplete="off">
+            <div class="login-field">
+              <label for="edNombre">Nombre del editable</label>
+              <input type="text" id="edNombre" placeholder="Ej. Carrusel Black Friday" required>
+            </div>
+            <div class="login-field">
+              <label>Categoría</label>
+              <div class="ed-cat-toggle" id="edCatToggle">
+                <button type="button" class="ed-cat-btn active" data-cat="carrusel">Carrusel</button>
+                <button type="button" class="ed-cat-btn" data-cat="historia">Historia</button>
+              </div>
+            </div>
+            <div class="login-field">
+              <label for="edAutor">Nombre del autor</label>
+              <input type="text" id="edAutor" placeholder="Tu nombre" required>
+            </div>
+            <div class="login-field">
+              <label for="edArchivo">Archivo (imagen, .ai o .psd)</label>
+              <input type="file" id="edArchivo" accept="image/*,.ai,.psd,.pdf" required>
+              <span class="ed-form-hint">Los archivos .ai/.psd se muestran como ficha descargable (el navegador no puede previsualizarlos). Los archivos de más de ~3.5MB pueden no conservarse al recargar, ya que este sitio guarda todo en el propio navegador, sin servidor.</span>
+            </div>
+            <button type="submit" class="login-btn ed-submit-btn">Subir editable</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="ed-repo">
+        <div class="ed-folder">
+          <div class="ed-folder-header">
+            <span class="ed-folder-icon">${FOLDER_ICON}</span>
+            <span class="ed-folder-name">Carruseles</span>
+            <span class="ed-folder-count" id="edCountCarrusel">0</span>
+          </div>
+          <div class="ed-folder-grid" id="edGridCarrusel"></div>
+        </div>
+        <div class="ed-folder">
+          <div class="ed-folder-header">
+            <span class="ed-folder-icon">${FOLDER_ICON}</span>
+            <span class="ed-folder-name">Historias</span>
+            <span class="ed-folder-count" id="edCountHistoria">0</span>
+          </div>
+          <div class="ed-folder-grid" id="edGridHistoria"></div>
+        </div>
+      </div>`;
+
+    let edCategoria = 'carrusel';
+    document.querySelectorAll('#edCatToggle .ed-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#edCatToggle .ed-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        edCategoria = btn.dataset.cat;
+      });
+    });
+
+    document.getElementById('edUploadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre  = document.getElementById('edNombre').value.trim();
+      const autor   = document.getElementById('edAutor').value.trim();
+      const archivo = document.getElementById('edArchivo').files[0];
+      if (!nombre || !autor || !archivo) return;
+
+      const { kind, ext } = edFileKind(archivo.name);
+
+      const finishUpload = (dataUrl) => {
+        const repo = edGetRepo();
+        repo.unshift({
+          id: Date.now(),
+          nombre,
+          autor,
+          categoria: edCategoria,
+          kind,
+          ext,
+          dataUrl,
+        });
+        const persisted = edSaveRepo(repo);
+        edRenderRepo();
+        if (!persisted) {
+          alert('El archivo se agregó a la vista actual, pero pesa demasiado para guardarse en este navegador (sin servidor). Al recargar la página podría perderse.');
+        }
+        e.target.reset();
+        document.querySelectorAll('#edCatToggle .ed-cat-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('#edCatToggle .ed-cat-btn[data-cat="carrusel"]').classList.add('active');
+        edCategoria = 'carrusel';
+      };
+
+      /* .ai/.psd/.pdf no se pueden previsualizar en el navegador, pero se
+         igual se leen como dataURL para poder descargarlos tal cual. Si el
+         archivo es muy pesado para localStorage, se muestra igual en esta
+         sesión pero se avisa que no persistirá al recargar. */
+      const reader = new FileReader();
+      reader.onload = () => finishUpload(reader.result);
+      reader.onerror = () => alert('No se pudo leer el archivo. Intenta con otro formato o un archivo más liviano.');
+      reader.readAsDataURL(archivo);
+    });
+
+    edRenderRepo();
+  }
+
+  function renderBrandPage(cfg, diseñoData) {
+    currentBrandCfg = cfg;
+    const grid = document.getElementById('cardGrid');
+    grid.style.display = 'block';
+    document.getElementById('heroBanner').style.display = 'none';
+    document.getElementById('sectionTitleWrap').style.display = 'none';
+    grid.innerHTML = buildBrandPage(cfg);
+
+    vlcRenderLogoCoverflow();
+    document.getElementById('vlcLogoPrev').addEventListener('click', () => {
+      vlcLogoActive = (vlcLogoActive - 1 + vlcLogoFiltered.length) % vlcLogoFiltered.length;
+      vlcLayoutLogoCoverflow();
+    });
+    document.getElementById('vlcLogoNext').addEventListener('click', () => {
+      vlcLogoActive = (vlcLogoActive + 1) % vlcLogoFiltered.length;
+      vlcLayoutLogoCoverflow();
+    });
+
+    const galTrack  = document.getElementById('vlcGalTrack');
+    const galDots   = Array.from(document.querySelectorAll('#vlcGalDots .vlc-dot'));
+    const cardStep  = 260; /* ancho de tarjeta (240px) + gap (20px) */
+
+    document.getElementById('vlcGalPrev').addEventListener('click', () => {
+      galTrack.scrollBy({ left: -cardStep, behavior: 'smooth' });
+    });
+    document.getElementById('vlcGalNext').addEventListener('click', () => {
+      galTrack.scrollBy({ left: cardStep, behavior: 'smooth' });
+    });
+    galDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        galTrack.scrollTo({ left: parseInt(dot.dataset.i, 10) * cardStep, behavior: 'smooth' });
+      });
+    });
+    galTrack.addEventListener('scroll', () => {
+      const max   = galTrack.scrollWidth - galTrack.clientWidth;
+      const ratio = max > 0 ? galTrack.scrollLeft / max : 0;
+      const active = Math.round(ratio * (galDots.length - 1));
+      galDots.forEach((d,i) => d.classList.toggle('active', i === active));
+    });
+
+    initEditablesSection();
+
+    document.getElementById('vlcBack').addEventListener('click', () => {
+      document.getElementById('heroBanner').style.display = 'none';
+      document.getElementById('sectionTitleWrap').style.display = 'none';
+      renderDesignRepoSection(diseñoData);
+    });
+  }
+
+  function renderPlaybooksPage(diseñoData) {
+    const grid = document.getElementById('cardGrid');
+    grid.style.display = 'block';
+    document.getElementById('heroBanner').style.display = 'none';
+    document.getElementById('sectionTitleWrap').style.display = 'none';
+    grid.innerHTML = buildPlaybooksPage();
+
+    document.getElementById('pbBack').addEventListener('click', () => {
+      renderDesignRepoSection(diseñoData);
+    });
+  }
+
+  function renderN8nDashboard(diseñoData) {
+    const grid = document.getElementById('cardGrid');
+    grid.style.display = 'block';
+    document.getElementById('heroBanner').style.display = 'none';
+    document.getElementById('sectionTitleWrap').style.display = 'none';
+    grid.innerHTML = buildN8nDashboard();
+
+    document.getElementById('n8nBack').addEventListener('click', () => {
+      renderDesignRepoSection(diseñoData);
+    });
+  }
+
+  function renderDesignRepoSection(data) {
+    const grid = document.getElementById('cardGrid');
+    grid.style.display = 'block';
+
+    const isAuthed = sessionStorage.getItem(DESIGN_REPO_SESSION_KEY) === 'true';
+
+    /* ---- ESTADO: sin sesión → mostrar login dentro del dashboard ---- */
+    if (!isAuthed) {
+      grid.innerHTML = buildDesignLoginPanel();
+
+      const form     = document.getElementById('designLoginForm');
+      const errorBox = document.getElementById('designLoginError');
+      const userIn   = document.getElementById('designLoginUser');
+      const passIn   = document.getElementById('designLoginPass');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const esValido = userIn.value.trim() === DESIGN_TEAM_CREDENTIALS.usuario &&
+                          passIn.value === DESIGN_TEAM_CREDENTIALS.contrasena;
+
+        if (esValido) {
+          sessionStorage.setItem(DESIGN_REPO_SESSION_KEY, 'true');
+          renderDesignRepoSection(data);
+        } else {
+          errorBox.classList.remove('show');
+          void errorBox.offsetWidth;
+          errorBox.classList.add('show');
+          passIn.value = '';
+          passIn.focus();
+        }
+      });
+      return;
+    }
+
+    /* ---- ESTADO: con sesión → repositorio por marcas, dentro del dashboard ---- */
+    grid.innerHTML = buildDesignRepoGrid(data.brands);
+
+    const brandGrid  = document.getElementById('designBrandGrid');
+    const detailPane = document.getElementById('designRepoDetail');
+
+    brandGrid.querySelectorAll('.brand-folder-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.brandKey;
+
+        /* Dropi ya es este mismo dashboard: solo lleva a Colorimetría */
+        if (key === 'dropi') {
+          document.querySelectorAll('.nav-item[data-cat]').forEach(i => i.classList.remove('active'));
+          document.querySelector('.nav-item[data-cat="colores"]').classList.add('active');
+          renderCards('colores');
+          return;
+        }
+
+        /* Catálogo de playbooks completos (Leyendas / Expo Winner) */
+        if (key === 'playbooks') {
+          renderPlaybooksPage(data);
+          return;
+        }
+
+        /* n8n es una herramienta interna: usa un panel tipo dashboard
+           en vez del playbook genérico de colores/logos/tipografía */
+        if (key === 'n8n') {
+          renderN8nDashboard(data);
+          return;
+        }
+
+        /* Cada submarca con playbook interactivo definido en BRAND_PAGES
+           se renderiza con el mismo motor genérico (antes solo Veloces) */
+        if (BRAND_PAGES[key]) {
+          renderBrandPage(BRAND_PAGES[key], data);
+          return;
+        }
+
+        designRepoDetailBrand = {
+          label: card.dataset.brandLabel,
+          initial: card.dataset.brandInitial
+        };
+        detailPane.innerHTML = buildDesignRepoDetail(designRepoDetailBrand);
+        brandGrid.style.display = 'none';
+        detailPane.classList.add('show');
+
+        document.getElementById('designDetailBack').addEventListener('click', (e) => {
+          e.preventDefault();
+          detailPane.classList.remove('show');
+          detailPane.innerHTML = '';
+          brandGrid.style.display = 'grid';
+        });
+      });
+    });
+
+    document.getElementById('designLogoutLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      sessionStorage.removeItem(DESIGN_REPO_SESSION_KEY);
+      renderDesignRepoSection(data);
+    });
+  }
+
+  /* ---- RENDER PRINCIPAL ---- */
+  function renderCards(key) {
+    const data = content[key];
+    document.getElementById('mainTitle').textContent    = data.title;
+    document.getElementById('sectionTitle').textContent = data.title;
+    const grid = document.getElementById('cardGrid');
+    grid.innerHTML = '';
+    grid.style.display = '';
+    grid.style.gridTemplateColumns = '';
+
+    /* ocultar y limpiar showcase si no es tipografía */
+    const showcase = document.getElementById('fontShowcase');
+    showcase.style.display = 'none';
+    showcase.innerHTML = '';
+
+    /* el banner "Nuevo kit de marca" no aplica a la sección de login/repositorio */
+    document.getElementById('heroBanner').style.display = (data.type === 'design-repo') ? 'none' : '';
+    /* evita el titular duplicado en la sección de Recursos Equipo de Diseño */
+    document.getElementById('sectionTitleWrap').style.display = (data.type === 'design-repo') ? 'none' : '';
+
+    /* COLORES */
+    if (data.type === 'colors') {
+      grid.style.display = 'block';
+      renderCapsules(data.palettes, grid);
+      return;
+    }
+
+    /* LANDING (paleta + tipografía + sistema de diseño) */
+    if (data.type === 'landing-hub') {
+      renderLandingHub(data);
+      return;
+    }
+
+    /* RECURSOS EQUIPO DE DISEÑO (login + repositorio, todo dentro del dashboard) */
+    if (data.type === 'design-repo') {
+      renderDesignRepoSection(data);
+      return;
+    }
+
+    /* TIPOGRAFÍA */
+    if (data.type === 'fonts') {
+
+      /* — SHOWCASE: va al contenedor dedicado encima — */
+      const showcase = document.getElementById('fontShowcase');
+      showcase.style.display = 'block';
+      
+      showcase.innerHTML = `
+        <div class="font-showcase-row">
+
+          <!-- TARJETA MEDIUM -->
+          <div class="font-showcase-card font-showcase-card--medium">
+            <div class="fsc-bg-label">Medium</div>
+            <div class="fsc-content">
+              <div class="fsc-label">Tusker Grotesk · Medium</div>
+              <div class="fsc-headline">Símil de<br>tipografía</div>
+              <div class="fsc-body">Las proporciones altas y estrechas de Tusker 1500 evocan el lenguaje visual de un código de barras.</div>
+            </div>
+            <div class="fsc-barcode">
+              <img src="recursos/Codigo_Barras.png" alt="" class="barcode-img">
+            </div>
+          </div>
+
+          <!-- TARJETA BOLD -->
+          <div class="font-showcase-card font-showcase-card--bold">
+            <div class="fsc-bg-label">Bold</div>
+            <div class="fsc-content">
+              <div class="fsc-label">Tusker Grotesk · Bold</div>
+              <div class="fsc-headline">Símil de<br>tipografía</div>
+              <div class="fsc-body">Comparte el mismo lenguaje gráfico del isologo de Dropi. Su peso visual, curvas y proporciones refuerzan una identidad sólida y coherente.</div>
+            </div>
+            <div class="fsc-mascot">
+              <img src="recursos/Bold.png" alt="" class="Iso-img">
+            </div>
+          </div>
+
+        </div>
+        <div class="font-showcase-divider"><span>Descarga las tipografías</span></div>`;
+
+      /* — TARJETAS DE DESCARGA en el grid de abajo — */
+      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+      data.items.forEach(it => {
+        if (it.fontFamily) {
+          const weightPills = it.weights.map(w => `<span class="weight-pill">${w}</span>`).join('');
+          grid.insertAdjacentHTML('beforeend', `
+            <div class="resource-card font-card">
+              <div class="font-role">${it.role}</div>
+              <div class="font-sample" style="font-family:'${it.fontFamily}',sans-serif">${it.sample}</div>
+              <div class="font-phrase" style="font-family:'${it.fontFamily}',sans-serif">${it.phrase}</div>
+              <p class="font-desc">${it.desc}</p>
+              <div class="weight-list">${weightPills}</div>
+              <div class="font-card-footer">
+                <a class="download-btn download-btn--warm" href="${it.downloadUrl}" target="_blank">${DL_ICON}Descargar fuente</a>
+              </div>
+            </div>`);
+        } else {
+          grid.insertAdjacentHTML('beforeend', `
+            <div class="resource-card font-card font-card--doc">
+              <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${icons[it.icon]}</svg></div>
+              <div class="font-role">${it.role}</div>
+              <h4>${it.title}</h4>
+              <p class="font-desc">${it.desc}</p>
+              <div class="font-card-footer">
+                <a class="download-btn download-btn--warm" href="${it.downloadUrl}" target="_blank">${DL_ICON}Descargar guía</a>
+              </div>
+            </div>`);
+        }
+      });
+      return;
+    }
+
+    /* LOGOS — layout de 3 paneles */
+    if (data.type === 'logo-panels') {
+      grid.style.display = 'block';
+      const LOGO_SLOT_KEY = id => `dropi_logo_slot_${id}`;
+      const slotCards = data.variations.map(v => {
+        const saved = localStorage.getItem(LOGO_SLOT_KEY(v.id));
+        return `
+        <div class="logo-slot" data-slot-id="${v.id}">
+          <div class="logo-slot__preview" id="logoSlotPreview-${v.id}">
+            ${saved
+              ? `<img src="${saved}" alt="${v.label}">`
+              : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Subir imagen</span>`}
+          </div>
+          <div class="logo-slot__label">${v.label}</div>
+          <div class="logo-slot__actions">
+            <label class="logo-slot__upload-btn" for="logoSlotInput-${v.id}">${saved ? 'Reemplazar' : 'Cargar'}</label>
+            <input type="file" accept="image/*" id="logoSlotInput-${v.id}" class="logo-slot__input" data-slot-id="${v.id}">
+            <a class="logo-slot__dl-btn ${saved ? '' : 'is-disabled'}" id="logoSlotDl-${v.id}" href="${saved || '#'}" download="${v.label.replace(/\s+/g,'_')}.png" title="Descargar">${DL_ICON}</a>
+          </div>
+        </div>`;
+      }).join('');
+
+      grid.innerHTML = `
+        <div class="logo-panels">
+
+          <!-- PANEL 1: CONSTRUCCIÓN + ZONA SEGURA (2 columnas internas) -->
+          <div class="logo-panel logo-panel--build">
+            <div class="lb-inner-cols">
+
+              <!-- COLUMNA A: Conceptualización -->
+              <div class="lb-col">
+                <div class="lp-label">Conceptualización</div>
+                <div class="logo-build-stage">
+                 <img class="conceptologo" src="recursos/Dropi_logoconcept.png" alt=""></img> 
+                </div>
+                <p class="lp-desc">El logo combina el isotipo con el wordmark en Sora ExtraBold. Las guías definen proporciones y alineación interna.</p>
+              </div>
+
+              <!-- DIVISOR VERTICAL -->
+              <div class="lb-divider"></div>
+
+              <!-- COLUMNA B: Zona segura -->
+              <div class="lb-col">
+                <div class="lp-label">Zona segura</div>
+                <div class="logo-safe-stage">
+                  <img class="Z-Segura" src="recursos/Zona_Segura.png" alt=""></img>
+                </div>
+                <p class="lp-desc">La zona de seguridad mínima equivale a la altura de la "D" del wordmark en los 4 lados. No colocar otros elementos dentro de esta área.</p>
+                <!-- tamaños mínimos -->
+                <div class="lb-sizes">
+                  <div class="lb-size-item" style="--s:32px"><div class="lb-size-dot"></div><span>300px</span></div>
+                  <div class="lb-size-item" style="--s:24px"><div class="lb-size-dot"></div><span>180px</span></div>
+                  <div class="lb-size-item" style="--s:17px"><div class="lb-size-dot"></div><span>120px</span></div>
+                  <div class="lb-size-item" style="--s:12px"><div class="lb-size-dot"></div><span>90px</span></div>
+                  <div class="lb-size-item" style="--s:8px" ><div class="lb-size-dot"></div><span>60px</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PANEL 2: USOS INDEBIDOS -->
+          <div class="logo-panel logo-panel--misuse">
+            <div class="lp-label">Usos indebidos</div>
+            <div class="misuse-grid">
+
+              <div class="misuse-card misuse--stretch">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X1.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Poner color a las diferentes partes del isologo</div>
+              </div>
+
+              <div class="misuse-card misuse--lowcontrast">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X2.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Suprimir o eliminar las partes tipográficas del isologo</div>
+              </div>
+
+              <div class="misuse-card misuse--rotate">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X3.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">El isologo de Dropi no puede ser modificado bajo ninguna circunstancia</div>
+              </div>
+
+              <div class="misuse-card misuse--recolor">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X4.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">El isologo de Dropi no puede ser modificado bajo ninguna circunstancia</div>
+              </div>
+
+              <div class="misuse-card misuse--shadow">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X5.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Cambiar los colores</div>
+              </div>
+
+              <div class="misuse-card misuse--outline">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X6.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Deformarlo</div>
+              </div>
+
+              <div class="misuse-card misuse--opacity">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X7.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Cambiar la construcción y la ubicación de sus textos</div>
+              </div>
+
+              <div class="misuse-card misuse--crowded">
+                <div class="misuse-card__visual">
+                  <img class="mi-logo" src="recursos/X8.png" alt=""></img>
+                  <div class="misuse-no-overlay"><div class="misuse-circle"></div></div>
+                </div>
+                <div class="misuse-rule">Construir el isologo a partir de tramas y texturas</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PANEL 3: VARIACIONES DEL LOGO (espacios para cargar imágenes) -->
+          <div class="logo-panel logo-panel--downloads">
+            <div class="lp-label">Variaciones del logo</div>
+            <p class="logo-slots-hint">Carga aquí cada variación del logo (PNG, JPG o SVG). Los archivos quedan guardados en este navegador.</p>
+            <div class="logo-slots-grid">${slotCards}</div>
+          </div>
+
+        </div>`;
+
+      /* interactividad: subir imagen por slot, guardar en localStorage y habilitar descarga */
+      data.variations.forEach(v => {
+        const input = document.getElementById(`logoSlotInput-${v.id}`);
+        input.addEventListener('change', () => {
+          const file = input.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = reader.result;
+            try { localStorage.setItem(LOGO_SLOT_KEY(v.id), dataUrl); } catch (e) { /* archivo muy pesado para localStorage */ }
+            const preview = document.getElementById(`logoSlotPreview-${v.id}`);
+            preview.innerHTML = `<img src="${dataUrl}" alt="${v.label}">`;
+            const dlBtn = document.getElementById(`logoSlotDl-${v.id}`);
+            dlBtn.href = dataUrl;
+            dlBtn.classList.remove('is-disabled');
+            input.previousElementSibling.textContent = 'Reemplazar';
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+      return;
+    }
+
+    /* AUDIOVISUAL · PLANTILLAS · IMÁGENES */
+    if (data.type === 'download-cards') {
+      data.items.forEach(it => {
+        grid.insertAdjacentHTML('beforeend', `
+          <div class="resource-card dl-card">
+            <div class="dl-card-top">
+              <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${icons[it.icon]}</svg></div>
+              <span class="dl-tag">${it.tag}</span>
+            </div>
+            <h4>${it.title}</h4>
+            <p>${it.desc}</p>
+            <div class="dl-card-footer">
+              <a class="download-btn download-btn--warm" href="${it.downloadUrl}" target="_blank">${DL_ICON}${it.downloadLabel}</a>
+            </div>
+          </div>`);
+      });
+      return;
+    }
+  }
+
+  document.querySelectorAll('.nav-item[data-cat]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item[data-cat]').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      renderCards(item.dataset.cat);
+    });
+  });
+
+  renderCards('colores');
+</script>
+
+</body>
+</html>

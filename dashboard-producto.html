@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropi Brand Hub — Producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="avatar-mini" style="background:linear-gradient(135deg,#3a3a3a,#000);">P</div>
+      <div class="who">
+        <small>Perfil activo</small>
+        <strong>Producto</strong>
+      </div>
+      <a class="switch-profile" href="index.html">Cambiar</a>
+    </div>
+
+    <div>
+      <div class="nav-label">Categorías de marca</div>
+      <ul class="nav-list" id="navList">
+        <li class="nav-item active" data-cat="guias"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Guías de producto</li>
+        <li class="nav-item" data-cat="roadmap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Roadmap</li>
+        <li class="nav-item" data-cat="especificaciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Especificaciones</li>
+        <li class="nav-item" data-cat="wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Wireframes</li>
+        <li class="nav-item" data-cat="documentacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Documentación</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h1 id="mainTitle">Guías de producto</h1>
+        <p>Lineamientos y recursos para construir producto alineado a la marca Dropi.</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <div class="hero-text">
+        <div class="eyebrow">Recién actualizado</div>
+        <h2>Nuevo set de guías de producto Dropi 2026, listo para consultar</h2>
+      </div>
+      <button class="hero-cta">Descargar guía completa</button>
+    </div>
+
+    <div class="section-title">
+      <h3 id="sectionTitle">Guías de producto</h3>
+    </div>
+
+    <div class="card-grid" id="cardGrid"></div>
+  </main>
+</section>
+
+<script>
+  const content = {
+    guias: {
+      title: 'Guías de producto',
+      items: [
+        {title:'Principios de producto', desc:'Lineamientos generales para decisiones de producto.', icon:'layout'},
+        {title:'Checklist de lanzamiento', desc:'Pasos previos antes de publicar una funcionalidad.', icon:'layout'},
+        {title:'Tono y voz en producto', desc:'Cómo se comunica Dropi dentro de la plataforma.', icon:'type'},
+      ]
+    },
+    roadmap: {
+      title: 'Roadmap',
+      items: [
+        {title:'Roadmap trimestral', desc:'Prioridades y entregables del trimestre actual.', icon:'video'},
+        {title:'Backlog priorizado', desc:'Iniciativas evaluadas por impacto y esfuerzo.', icon:'video'},
+        {title:'Histórico de releases', desc:'Registro de versiones y cambios anteriores.', icon:'video'},
+      ]
+    },
+    especificaciones: {
+      title: 'Especificaciones',
+      items: [
+        {title:'Especificación funcional', desc:'Detalle de comportamiento esperado por feature.', icon:'type'},
+        {title:'Reglas de negocio', desc:'Condiciones y validaciones del sistema.', icon:'type'},
+        {title:'Criterios de aceptación', desc:'Definición de "hecho" para cada historia.', icon:'type'},
+      ]
+    },
+    wireframes: {
+      title: 'Wireframes',
+      items: [
+        {title:'Flujos de usuario', desc:'Wireframes de los flujos principales de la app.', icon:'image'},
+        {title:'Estados vacíos y errores', desc:'Cómo se diseñan los estados especiales.', icon:'image'},
+        {title:'Librería de componentes base', desc:'Bloques reutilizables para nuevas pantallas.', icon:'image'},
+      ]
+    },
+    documentacion: {
+      title: 'Documentación',
+      items: [
+        {title:'Glosario de producto', desc:'Definiciones y términos usados en Dropi.', icon:'logo'},
+        {title:'Documentación de procesos', desc:'Cómo se gestionan los ciclos de producto.', icon:'logo'},
+        {title:'Onboarding de producto', desc:'Guía para nuevos integrantes del equipo.', icon:'logo'},
+      ]
+    }
+  };
+
+  const icons = {
+    type: '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
+    logo: '<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>',
+    video: '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>',
+    layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'
+  };
+
+  function renderCards(key){
+    const data = content[key];
+    document.getElementById('mainTitle').textContent = data.title;
+    document.getElementById('sectionTitle').textContent = data.title;
+    const grid = document.getElementById('cardGrid');
+    grid.innerHTML = '';
+    data.items.forEach(it=>{
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${icons[it.icon]}</svg></div>
+          <h4>${it.title}</h4>
+          <p>${it.desc}</p>
+        </div>`);
+    });
+  }
+
+  document.querySelectorAll('.nav-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+      item.classList.add('active');
+      renderCards(item.dataset.cat);
+    });
+  });
+
+  renderCards('guias');
+</script>
+
+</body>
+</html>

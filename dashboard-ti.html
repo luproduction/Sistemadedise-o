@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropi Brand Hub — T.I.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="avatar-mini" style="background:linear-gradient(135deg,#5a3a1f,#1a1a1a); color:#FF5A1F;">T</div>
+      <div class="who">
+        <small>Perfil activo</small>
+        <strong>T.I.</strong>
+      </div>
+      <a class="switch-profile" href="index.html">Cambiar</a>
+    </div>
+
+    <div>
+      <div class="nav-label">Categorías de marca</div>
+      <ul class="nav-list" id="navList">
+        <li class="nav-item active" data-cat="manual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20c1.5 0 2-1 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .8-1.5 1.8-1.5H17a3 3 0 0 0 3-3c0-5-3.5-11-8-11z"/></svg>Manual de marca digital</li>
+        <li class="nav-item" data-cat="componentes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Componentes UI</li>
+        <li class="nav-item" data-cat="iconografia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Iconografía</li>
+        <li class="nav-item" data-cat="assets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Assets técnicos</li>
+        <li class="nav-item" data-cat="api"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Documentación API</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h1 id="mainTitle">Manual de marca digital</h1>
+        <p>Recursos técnicos para implementar la identidad Dropi en productos digitales.</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <div class="hero-text">
+        <div class="eyebrow">Recién actualizado</div>
+        <h2>Nuevo set de tokens de diseño Dropi 2026, listo para implementar</h2>
+      </div>
+      <button class="hero-cta">Descargar tokens</button>
+    </div>
+
+    <div class="section-title">
+      <h3 id="sectionTitle">Manual de marca digital</h3>
+    </div>
+
+    <div class="card-grid" id="cardGrid"></div>
+  </main>
+</section>
+
+<script>
+  const content = {
+    manual: {
+      title: 'Manual de marca digital',
+      type: 'colors',
+      palettes: [
+        {
+          label: 'Tokens de color — Primarios',
+          capsules: [
+            {hex:'#FF5A1F', name:'--color-brand-orange',  light:false},
+            {hex:'#C73E0A', name:'--color-brand-deep',    light:false},
+            {hex:'#0B0B0C', name:'--color-bg-base',       light:false},
+            {hex:'#161616', name:'--color-bg-elevated',   light:false},
+            {hex:'#1D1D1E', name:'--color-bg-card',       light:false},
+          ]
+        },
+        {
+          label: 'Tokens de color — Neutros',
+          capsules: [
+            {hex:'#F5F4F1', name:'--color-text-primary',  light:true},
+            {hex:'#9C9893', name:'--color-text-muted',    light:false},
+            {hex:'#2A2A2A', name:'--color-line',          light:false},
+            {hex:'#FF8A3D', name:'--color-orange-soft',   light:false},
+            {hex:'#ffffff', name:'--color-white',         light:true},
+          ]
+        },
+      ]
+    },
+    componentes: {
+      title: 'Componentes UI',
+      items: [
+        {title:'Librería de botones', desc:'Estados, tamaños y variantes oficiales.', icon:'layout'},
+        {title:'Formularios e inputs', desc:'Componentes de formulario con validaciones visuales.', icon:'layout'},
+        {title:'Tarjetas y contenedores', desc:'Patrones de tarjetas reutilizables.', icon:'layout'},
+      ]
+    },
+    iconografia: {
+      title: 'Iconografía',
+      items: [
+        {title:'Set de íconos SVG', desc:'Íconos exportados en formato vectorial optimizado.', icon:'image'},
+        {title:'Guía de uso de íconos', desc:'Tamaños, grosores de trazo y espaciados.', icon:'image'},
+      ]
+    },
+    assets: {
+      title: 'Assets técnicos',
+      items: [
+        {title:'Favicons y app icons', desc:'Set completo para web y apps móviles.', icon:'video'},
+        {title:'Animaciones Lottie', desc:'Loaders y micro-interacciones de marca.', icon:'video'},
+        {title:'Sprites y recursos optimizados', desc:'Archivos listos para producción.', icon:'video'},
+      ]
+    },
+    api: {
+      title: 'Documentación API',
+      items: [
+        {title:'Guía de integración', desc:'Cómo consumir los endpoints de la plataforma.', icon:'logo'},
+        {title:'Autenticación', desc:'Manejo de tokens y llaves de acceso.', icon:'logo'},
+        {title:'Referencia de endpoints', desc:'Listado completo de rutas disponibles.', icon:'logo'},
+      ]
+    }
+  };
+
+  const icons = {
+    logo: '<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>',
+    video: '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>',
+    layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'
+  };
+
+  function renderCapsules(palettes, container){
+    container.innerHTML = '';
+    palettes.forEach(palette=>{
+      const label = document.createElement('div');
+      label.className = 'colors-section-label';
+      label.textContent = palette.label;
+      container.appendChild(label);
+
+      const row = document.createElement('div');
+      row.className = 'color-capsule-grid';
+
+      palette.capsules.forEach((cap, i)=>{
+        const el = document.createElement('div');
+        el.className = 'color-capsule' + (cap.light ? ' light-cap' : '');
+        el.style.background = cap.hex;
+        el.title = cap.name;
+        el.innerHTML = `
+          <div class="cap-number">${i+1}</div>
+          <div class="cap-hex">${cap.hex}</div>`;
+        row.appendChild(el);
+      });
+
+      container.appendChild(row);
+      container.insertAdjacentHTML('beforeend','<div style="height:32px"></div>');
+    });
+  }
+
+  function renderCards(key){
+    const data = content[key];
+    document.getElementById('mainTitle').textContent = data.title;
+    document.getElementById('sectionTitle').textContent = data.title;
+    const grid = document.getElementById('cardGrid');
+    grid.innerHTML = '';
+
+    if(data.type === 'colors'){
+      grid.style.display = 'block';
+      renderCapsules(data.palettes, grid);
+      return;
+    }
+
+    grid.style.display = '';
+    data.items.forEach(it=>{
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${icons[it.icon]}</svg></div>
+          <h4>${it.title}</h4>
+          <p>${it.desc}</p>
+        </div>`);
+    });
+  }
+
+  document.querySelectorAll('.nav-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+      item.classList.add('active');
+      renderCards(item.dataset.cat);
+    });
+  });
+
+  renderCards('manual');
+</script>
+
+</body>
+</html>

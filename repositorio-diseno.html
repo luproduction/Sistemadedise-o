@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repositorio interno — Equipo Diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<script>
+  /* Guard de acceso: si no hay sesión activa del equipo de diseño, volver al login */
+  if (sessionStorage.getItem('dropi_design_team_auth') !== 'true') {
+    window.location.replace('login-diseno.html');
+  }
+</script>
+
+<section class="repo-screen">
+
+  <div class="repo-header">
+    <div>
+      <h1>Repositorio interno</h1>
+      <p>Selecciona una marca para acceder a su repositorio de diseño.</p>
+    </div>
+    <a class="repo-logout" href="#" id="logoutLink">Cerrar sesión</a>
+  </div>
+
+  <!-- GRID DE MARCAS -->
+  <div class="brand-folder-grid" id="brandGrid">
+
+    <a class="brand-folder-card" href="dashboard-creativo.html">
+      <div class="brand-folder-status brand-folder-status--ready">Disponible</div>
+      <div class="brand-folder-icon">D</div>
+      <div class="brand-folder-name">Dropi</div>
+      <div class="brand-folder-meta">Repositorio de marca completo</div>
+    </a>
+
+    <div class="brand-folder-card" data-brand="EcomDay" data-initial="E">
+      <div class="brand-folder-status brand-folder-status--soon">Próximamente</div>
+      <div class="brand-folder-icon">E</div>
+      <div class="brand-folder-name">EcomDay</div>
+      <div class="brand-folder-meta">Repositorio de marca</div>
+    </div>
+
+    <div class="brand-folder-card" data-brand="Chatea Pro" data-initial="C">
+      <div class="brand-folder-status brand-folder-status--soon">Próximamente</div>
+      <div class="brand-folder-icon">C</div>
+      <div class="brand-folder-name">Chatea Pro</div>
+      <div class="brand-folder-meta">Repositorio de marca</div>
+    </div>
+
+    <div class="brand-folder-card" data-brand="Dropi Turbo" data-initial="T">
+      <div class="brand-folder-status brand-folder-status--soon">Próximamente</div>
+      <div class="brand-folder-icon">T</div>
+      <div class="brand-folder-name">Dropi Turbo</div>
+      <div class="brand-folder-meta">Repositorio de marca</div>
+    </div>
+
+  </div>
+
+  <!-- VISTA DETALLE PARA MARCAS SIN REPOSITORIO AÚN -->
+  <div class="repo-detail" id="repoDetail">
+    <div class="repo-detail-icon" id="repoDetailIcon">·</div>
+    <h2 id="repoDetailTitle">Marca</h2>
+    <p id="repoDetailText"></p>
+    <a class="repo-detail-back" href="#" id="repoDetailBack">← Volver al repositorio</a>
+  </div>
+
+</section>
+
+<script>
+  const grid   = document.getElementById('brandGrid');
+  const detail = document.getElementById('repoDetail');
+  const detailIcon  = document.getElementById('repoDetailIcon');
+  const detailTitle = document.getElementById('repoDetailTitle');
+  const detailText  = document.getElementById('repoDetailText');
+
+  document.querySelectorAll('.brand-folder-card[data-brand]').forEach(card => {
+    card.addEventListener('click', () => {
+      const brand   = card.dataset.brand;
+      const initial = card.dataset.initial;
+
+      detailIcon.textContent  = initial;
+      detailTitle.textContent = brand;
+      detailText.textContent  = `El repositorio de diseño de ${brand} aún no ha sido habilitado. Cuando esté listo, sus carpetas de colores, tipografía, logos y recursos aparecerán aquí con el mismo formato que el repositorio de Dropi.`;
+
+      grid.style.display = 'none';
+      detail.classList.add('show');
+    });
+  });
+
+  document.getElementById('repoDetailBack').addEventListener('click', (e) => {
+    e.preventDefault();
+    detail.classList.remove('show');
+    grid.style.display = 'grid';
+  });
+
+  document.getElementById('logoutLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem('dropi_design_team_auth');
+    window.location.href = 'login-diseno.html';
+  });
+</script>
+
+</body>
+</html>
